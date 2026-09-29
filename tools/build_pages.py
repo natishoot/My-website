@@ -16,8 +16,9 @@ PORTFOLIO = "https://natishoot.myportfolio.com/"
 
 # Séries affichées sur l'accueil (même ordre et mêmes clés que SERIES dans index.html)
 SERIES = [
-    {"k": "portrait", "t": "Portrait", "d": "Studio, mode, extérieur",
-     "parts": [("Portrait", "portrait", "portrait"), ("Créateurs & collabs", "createurs-collabs", "createurs-collabs"), ("Défilé & mode", "defile", "defile")]},
+    {"k": "portrait", "t": "Portrait", "d": "Studio, extérieur", "parts": [("Portrait", "portrait", "portrait")]},
+    {"k": "createurs", "t": "Créateurs (Collabs)", "d": "Créateurs & marques", "parts": [("Créateurs (Collabs)", "createurs-collabs", "createurs-collabs")]},
+    {"k": "defile", "t": "Défilé / Mode", "d": "Podiums & mode", "parts": [("Défilé / Mode", "defile", "defile")]},
     {"k": "concerts", "t": "Concerts", "d": "Scène, festivals, artistes", "parts": [("Concerts", "concerts", "concerts")]},
     {"k": "cosplay", "t": "Cosplay", "d": "Conventions & personnages", "parts": [("Cosplay", "cosplay", "cosplay")]},
     {"k": "grossesse", "t": "Grossesse", "d": "Maternité, lumière douce", "parts": [("Grossesse", "grossesse", "grossesse")]},
@@ -35,7 +36,7 @@ PRESTATIONS = [
      "cover": "portrait-43",
      "items": ["Portrait individuel", "Shooting mode & créateurs", "Book modèle", "Lumière studio (Godox, Neewer)",
                "Fonds noir, blanc, violet", "Retouche & colorimétrie"],
-     "photos": [("portrait", 12), ("createurs-collabs", 4), ("defile", 4)], "series": ["portrait"]},
+     "photos": [("portrait", 12), ("createurs-collabs", 4), ("defile", 4)], "series": ["portrait", "createurs", "defile"]},
     {"k": "concerts-evenements", "n": "02", "t": "Concerts", "em": "& événements", "sub": "Scène & événementiel", "type": "Événement",
      "cover": "concerts-03",
      "items": ["Concerts & festivals", "Galas, compétitions sportives", "Conventions & cosplay", "Mariages & anniversaires",
