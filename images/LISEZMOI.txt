@@ -1,1 +1,2 @@
-Déposer ici les photos exportées (JPEG sRGB, 2000 px grand côté) puis les déclarer dans photos.js.
+Photos du site (JPEG sRGB, 1920 px, qualité 80 ; vignettes -900).
+La correspondance photo -> fichier est dans index.html (const LOCAL). Une photo absente d'ici est chargée depuis le portfolio Adobe.
