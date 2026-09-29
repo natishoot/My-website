@@ -51,10 +51,20 @@
 <main>
   <!-- HERO -->
   <section class="hero" aria-label="Présentation">
-    <img class="hero-img" src="https://cdn.myportfolio.com/94bb176b-8097-4eb4-8ab2-ddb6597407f0/76d32949-7ea0-420b-a616-1bc4325a724d_rw_1200.jpg?h=aba188d8f502f61e94a0d40dae3d11ab" alt="Portrait réalisé par NatiShoot" fetchpriority="high">
+    <div class="hero-slides" id="hero-slides">
+      <img class="is-active" src="images/portrait-15.jpg" alt="" fetchpriority="high" decoding="async">
+      <img src="images/concerts-33.jpg" alt="" loading="lazy" decoding="async">
+      <img src="images/defile-03.jpg" alt="" loading="lazy" decoding="async">
+      <img src="images/cosplay-10.jpg" alt="" loading="lazy" decoding="async">
+      <img src="images/portrait-29.jpg" alt="" loading="lazy" decoding="async">
+      <img src="images/divers-17.jpg" alt="" loading="lazy" decoding="async">
+      <img src="images/createurs-collabs-04.jpg" alt="" loading="lazy" decoding="async">
+      <img src="images/portrait-32.jpg" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="shutter" aria-hidden="true"></div>
     <div class="viewfinder" aria-hidden="true">
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-      <div class="vf-top"><span class="rec"><i></i>REC</span><span>NatiShoot</span><span class="focus">Mise au point…</span></div>
+      <div class="vf-top"><span class="rec"><i></i>REC</span><span>NatiShoot</span><span class="focus">Mise au point…</span><span class="frame" id="frame-count">01 / 08</span></div>
       <div class="vf-bottom"><span>ISO 400</span><span>f/2.8</span><span>1/250</span><span class="coords">48.85°N 2.35°E</span></div>
     </div>
     <div class="hero-text">
@@ -66,6 +76,9 @@
       </div>
     </div>
   </section>
+
+  <!-- BANDE FILM -->
+  <div class="filmstrip" aria-hidden="true"><div class="film-track" id="film-track"></div></div>
 
   <!-- 01 MANIFESTE -->
   <section class="block manifesto">

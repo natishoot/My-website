@@ -1,5 +1,24 @@
 (() => {
   const PAGE = 12;
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Hero : diaporama Ken Burns + obturateur + compteur d'images
+  const slides = [...document.querySelectorAll("#hero-slides img")];
+  const shutter = document.querySelector(".shutter");
+  const frameCount = document.getElementById("frame-count");
+  let cur = 0;
+  if (slides.length > 1 && !calm) {
+    setInterval(() => {
+      if (document.hidden) return;
+      shutter.classList.remove("snap"); void shutter.offsetWidth; shutter.classList.add("snap");
+      setTimeout(() => {
+        slides[cur].classList.remove("is-active");
+        cur = (cur + 1) % slides.length;
+        slides[cur].classList.add("is-active");
+        frameCount.textContent = `${String(cur + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+      }, 200);
+    }, 6000);
+  }
   const photos = window.PHOTOS || [];
   const series = window.SERIES || [];
 
@@ -19,10 +38,30 @@
     if (e.target.tagName === "A") { burger.setAttribute("aria-expanded", "false"); menu.classList.remove("open"); }
   });
 
-  // Séries
+  // Séries (image de fond au survol : première photo de la série si elle est sur le site)
+  const cover = url => {
+    const slug = url.split("/").pop();
+    const p = photos.find(x => x.src.includes(`/${slug}-`));
+    return p ? `style="--img:url('${p.thumb || p.src}')"` : "";
+  };
   document.getElementById("series-list").innerHTML = series.map(s =>
-    `<a class="serie" href="${s.url}" target="_blank" rel="noopener"><strong>${s.name}</strong><span>${s.year} ↗</span></a>`
+    `<a class="serie" href="${s.url}" target="_blank" rel="noopener" ${cover(s.url)}><strong>${s.name}</strong><span>${s.year} ↗</span></a>`
   ).join("");
+
+  // Bande film : une photo sur six, dupliquée pour une boucle continue
+  const film = document.getElementById("film-track");
+  if (film) {
+    const pick = photos.filter((_, i) => i % 6 === 0).slice(0, 24);
+    const html = pick.map(p => `<img src="${p.thumb || p.src}" alt="" loading="lazy" decoding="async">`).join("");
+    film.innerHTML = html + html;
+  }
+
+  // Apparition des vignettes au défilement
+  const io = !calm && "IntersectionObserver" in window
+    ? new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      }), { rootMargin: "0px 0px -8% 0px" })
+    : null;
   document.getElementById("stat-series").textContent = series.length;
 
   // Filtres + galerie
@@ -30,18 +69,18 @@
   const filters = document.getElementById("filters");
   const gallery = document.getElementById("gallery");
   const more = document.getElementById("more");
-  let current = "Tout", shown = PAGE, list = photos;
+  let current = "Tout", shown = PAGE, list = photos, seen = 0;
 
   filters.innerHTML = cats.map(c =>
     `<button role="tab" aria-selected="${c === "Tout"}" data-cat="${c}">${c}</button>`).join("");
   if (cats.length <= 2) filters.hidden = true;
   filters.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
-    current = b.dataset.cat; shown = PAGE;
+    current = b.dataset.cat; shown = PAGE; seen = 0;
     filters.querySelectorAll("button").forEach(x => x.setAttribute("aria-selected", x === b));
     render();
   });
-  more.addEventListener("click", () => { shown += PAGE; render(); });
+  more.addEventListener("click", () => { seen = shown; shown += PAGE; render(); });
 
   function render() {
     list = current === "Tout" ? photos : photos.filter(p => p.cat === current);
@@ -54,6 +93,9 @@
          <img src="${p.thumb || p.src}" alt="${p.alt || ""}" loading="${i < 4 ? "eager" : "lazy"}" decoding="async">
          <span class="label">${p.cat}</span>
        </button>`).join("");
+    if (io) [...gallery.querySelectorAll(".tile")].slice(seen).forEach((t, i) => {
+      t.classList.add("reveal"); t.style.setProperty("--d", `${(i % 3) * 0.08}s`); io.observe(t);
+    });
     gallery.querySelectorAll("img").forEach(img => {
       if (img.complete) img.classList.add("loaded");
       else img.addEventListener("load", () => img.classList.add("loaded"), { once: true });
@@ -70,7 +112,12 @@
   function show(i) {
     idx = (i + list.length) % list.length;
     const p = list[idx];
-    lbImg.src = p.src; lbImg.alt = p.alt || "";
+    if (calm || !lb.open) { lbImg.classList.remove("swap"); lbImg.src = p.src; }
+    else {
+      lbImg.classList.add("swap");
+      setTimeout(() => { lbImg.onload = () => lbImg.classList.remove("swap"); lbImg.src = p.src; }, 200);
+    }
+    lbImg.alt = p.alt || "";
     lb.querySelector(".lb-cat").textContent = p.cat;
     lb.querySelector(".lb-count").textContent = `${pad(idx + 1)} / ${pad(list.length)}`;
   }
