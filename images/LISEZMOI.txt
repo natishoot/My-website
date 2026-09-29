@@ -1,2 +1,2 @@
-Photos du site (JPEG sRGB, 1920 px, qualité 80 ; vignettes -900).
-La correspondance photo -> fichier est dans index.html (const LOCAL). Une photo absente d'ici est chargée depuis le portfolio Adobe.
+Photos du site (JPEG sRGB, 1920 px, qualité 80 ; vignettes -900), nommées <serie>-NN.jpg.
+Accueil : correspondance dans index.html (const LOCAL). Pages séries et prestations : relancer python3 tools/build_pages.py après ajout de photos.
