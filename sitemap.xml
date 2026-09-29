@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Domaine provisoire : remplacer natishoot-site.netlify.app par le domaine final avant soumission -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://natishoot-site.netlify.app/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://natishoot-site.netlify.app/mentions-legales.html</loc><priority>0.2</priority></url>
+  <url><loc>https://natishoot-site.netlify.app/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/series/concerts.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/series/cosplay.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/series/grossesse.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/series/lifestyle.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/series/portrait.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/series/reportage.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/series/sport.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/prestations/concerts-evenements.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/prestations/grossesse-intime.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/prestations/portrait-mode.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/prestations/video-live.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/mentions-legales.html</loc><lastmod>2026-09-29</lastmod></url>
 </urlset>
