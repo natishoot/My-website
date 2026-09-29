@@ -403,9 +403,17 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 .hero .tag p{max-width:600px}
 @media (max-width:760px){.hero .tag{bottom:calc((44vh + 12vw)/2);align-items:flex-start}}
 
+
+/* écart Manifeste → Séries resserré ; séries sur 2 lignes (ordinateur) */
+.manifesto{padding-bottom:clamp(70px,9vw,150px)}
+.series{padding-top:clamp(40px,6vh,70px)}
+.series .h-track{grid-template-columns:repeat(5,minmax(0,1fr))}
+.series .card h3{font-size:clamp(16px,1.6vw,28px)}
+@media (min-width:1101px){.series .h-track{max-width:1500px;margin:0 auto}}
 /* couleurs fidèles sur mobile : pas de mode sombre forcé, pas de grain */
 :root{color-scheme:dark}
 @media (max-width:760px),(hover:none){.grain{display:none}}
+@media (max-width:560px){.series .h-track{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -462,7 +470,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 
 <section class="manifesto" aria-label="Manifeste">
   <div class="floaters" aria-hidden="true" id="floaters"></div>
-  <div class="eyebrow">Manifeste — 01</div>
+  <div class="eyebrow">01 — Manifeste</div>
   <p class="big" id="manif">Le temps d’une photo, le temps d’un voyage, le temps d’une pose. <em>Une pause sur le temps.</em> J’aime voir les émotions à travers les regards, le vécu sur les visages.</p>
   <div class="sign"><b>Natan</b><span class="mono">Fondateur — NatiShoot Photography</span></div>
 </section>
@@ -546,22 +554,9 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
     <p data-fade>Mon surnom, c’est Natan. Je photographie les regards, les scènes et les corps qui racontent une histoire — du portrait intimiste à l’énergie brute d’un concert.</p>
     <p data-fade>Je prends le temps de comprendre votre demande, je me déplace avec mon matériel complet et je peux constituer une équipe avec des partenaires : vidéaste, make-up artists, créateurs de vêtements et d’accessoires.</p>
     <div class="stats" data-fade>
-      <div><b data-count="8">0</b><span>univers photo</span></div>
+      <div><b data-count="10">0</b><span>univers photo</span></div>
       <div><b data-count="230" data-suffix="+">0</b><span>images en ligne</span></div>
       <div><b data-count="2" data-suffix="">0</b><span>métiers : photo &amp; vidéo</span></div>
-    </div>
-    <div class="gear" data-fade>
-      <h4>Matériel</h4>
-      <ul>
-        <li><span>Lumix GH5 II</span><span>Boîtier</span></li>
-        <li><span>Leica 12–60 mm</span><span>Optique</span></li>
-        <li><span>2× Godox SL60W</span><span>Lumière</span></li>
-        <li><span>2× Neewer 660 Pro</span><span>Lumière</span></li>
-        <li><span>Godox Speedlite V1</span><span>Flash</span></li>
-        <li><span>ATEM Mini</span><span>Live</span></li>
-        <li><span>GoPro Black 9</span><span>Action</span></li>
-        <li><span>Fonds tissu 3 m</span><span>Studio</span></li>
-      </ul>
     </div>
   </div>
 </section>
@@ -908,7 +903,6 @@ function initMotion(){
   // ABOUT parallax + counters
   gsap.fromTo('#aimg img',{yPercent:-12},{yPercent:0,ease:'none',scrollTrigger:{trigger:'.about',start:'top bottom',end:'bottom top',scrub:true}});
   $$('[data-count]').forEach(b=>{const o={v:0};gsap.to(o,{v:+b.dataset.count,duration:2.2,ease:'expo.out',scrollTrigger:{trigger:b,start:'top 90%'},onUpdate:()=>b.textContent=Math.round(o.v)+(b.dataset.suffix||'')})});
-  gsap.from('.gear li',{opacity:0,y:14,duration:.7,stagger:.04,ease:'expo.out',scrollTrigger:{trigger:'.gear',start:'top 85%'}});
 
   // CONTACT big letters wave on hover
   $$('#cbig .line-mask>span').forEach(sp=>{[...sp.childNodes].forEach(n=>{if(n.nodeType===3){const f=document.createDocumentFragment();n.textContent.split('').forEach(ch=>{if(ch===' '){f.append(' ');return}const s=document.createElement('span');s.className='ch';s.textContent=ch;f.append(s)});n.replaceWith(f)}})});
