@@ -1,0 +1,1 @@
+Déposer ici les photos exportées (JPEG sRGB, 2000 px grand côté) puis les déclarer dans photos.js.
