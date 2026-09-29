@@ -94,6 +94,7 @@ def page(title, desc, canonical, body):
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <meta name="theme-color" content="#0b0a09">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://natishoot-site.netlify.app/{canonical}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">

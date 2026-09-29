@@ -3,7 +3,7 @@
 @font-face{font-family:'Inter Tight';src:url(../fonts/inter-tight-400.woff2) format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Inter Tight';src:url(../fonts/inter-tight-500-600.woff2) format('woff2');font-weight:500 600;font-display:swap}
 @font-face{font-family:'Instrument Serif';src:url(../fonts/instrument-serif-400-italic.woff2) format('woff2');font-style:italic;font-weight:400;font-display:swap}
-:root{
+:root{color-scheme:dark;
   --bg:#0b0a09;--bg2:#141210;--ink:#f3efe8;--mute:#8f887e;--line:rgba(243,239,232,.14);
   --acc:#ff4d1c;--acc2:#ffb23f;
   --disp:'Anton',Impact,'Arial Narrow',sans-serif;

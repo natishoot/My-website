@@ -9,6 +9,7 @@
 <meta property="og:description" content="Portrait, concerts, cosplay, sport, grossesse. Shooting photo & vidéo sur devis.">
 <meta property="og:image" content="https://cdn.myportfolio.com/94bb176b-8097-4eb4-8ab2-ddb6597407f0/76d32949-7ea0-420b-a616-1bc4325a724d_rw_1200.jpg?h=aba188d8f502f61e94a0d40dae3d11ab">
 <meta name="theme-color" content="#0b0a09">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <link rel="icon" href="https://cdn.myportfolio.com/94bb176b-8097-4eb4-8ab2-ddb6597407f0/1f4ada9c-bf5b-40c7-917e-3dfab8ec1da1_rwc_189x177x2633x2646x4096.png?h=d2515d3b0ab7e799f0677cb09e7a3a8b">
@@ -401,6 +402,10 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 .hero .tag{bottom:calc((clamp(110px,17vw,240px) + clamp(64px,15vw,290px)*.8)/2);transform:translateY(50%);align-items:center}
 .hero .tag p{max-width:600px}
 @media (max-width:760px){.hero .tag{bottom:calc((44vh + 12vw)/2);align-items:flex-start}}
+
+/* couleurs fidèles sur mobile : pas de mode sombre forcé, pas de grain */
+:root{color-scheme:dark}
+@media (max-width:760px),(hover:none){.grain{display:none}}
 </style>
 </head>
 <body>
@@ -420,8 +425,8 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
   <a href="#top" class="logo" aria-label="NatiShoot, retour en haut">NATISHOOT <small>photography</small></a>
   <ul>
     <li><a href="#series"><span>Séries</span><span>Séries</span></a></li>
-    <li><a href="#travaux"><span>Travaux</span><span>Travaux</span></a></li>
     <li><a href="#prestations"><span>Prestations</span><span>Prestations</span></a></li>
+    <li><a href="#travaux"><span>Travaux</span><span>Travaux</span></a></li>
     <li><a href="#apropos"><span>À propos</span><span>À propos</span></a></li>
   </ul>
   <a href="#contact" class="btn mag">Réserver un shooting <span class="arr">→</span></a>
@@ -429,8 +434,8 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 </header>
 <nav class="mmenu" aria-label="Menu mobile">
   <a href="#series"><span>Séries</span></a>
-  <a href="#travaux"><span>Travaux</span></a>
   <a href="#prestations"><span>Prestations</span></a>
+  <a href="#travaux"><span>Travaux</span></a>
   <a href="#apropos"><span>À propos</span></a>
   <a href="#contact"><span>Contact</span></a>
   <div class="mono">Instagram — @tfl.971</div>
@@ -467,20 +472,6 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
   <div class="progress-h"><i id="hprog"></i></div>
 </section>
 
-<div class="marquee alt" data-dir="1" aria-hidden="true"><div class="track">
-  <span class="item">Shooting sur devis</span><span class="item">Déplacement possible</span><span class="item">Photo + vidéo</span><span class="item">Live streaming</span><span class="item">Équipe complète</span>
-</div></div>
-
-<section id="travaux" aria-label="Travaux">
-  <div class="sec-head">
-    <h2 class="h2"><span class="line-mask"><span>Le</span></span><span class="line-mask"><span><em>travail</em></span></span></h2>
-    <p class="idx">03 — Sélection <span id="shown"></span></p>
-  </div>
-  <div class="filters" role="toolbar" aria-label="Filtrer par catégorie" id="filters"></div>
-  <div class="grid" id="grid"></div>
-  <div class="more"><button class="btn mag" id="loadmore">Afficher plus d’images <span class="arr">↓</span></button></div>
-</section>
-
 <section class="quote" aria-label="Citation">
   <div class="pin">
     <div class="bgimg" id="qimg"></div>
@@ -491,7 +482,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 <section class="services" id="prestations" aria-label="Prestations">
   <div class="sec-head">
     <h2 class="h2"><span class="line-mask"><span>Presta</span></span><span class="line-mask"><span>tions <em>sur mesure</em></span></span></h2>
-    <p class="idx">04 — Tarifs sur devis, adaptés à votre projet</p>
+    <p class="idx">03 — Tarifs sur devis, adaptés à votre projet</p>
   </div>
   <div class="stack" id="stack">
     <article class="svc">
@@ -531,6 +522,20 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
       <div class="r" data-img="co6"></div>
     </article>
   </div>
+</section>
+
+<div class="marquee alt" data-dir="1" aria-hidden="true"><div class="track">
+  <span class="item">Shooting sur devis</span><span class="item">Déplacement possible</span><span class="item">Photo + vidéo</span><span class="item">Live streaming</span><span class="item">Équipe complète</span>
+</div></div>
+
+<section id="travaux" aria-label="Travaux">
+  <div class="sec-head">
+    <h2 class="h2"><span class="line-mask"><span>Le</span></span><span class="line-mask"><span><em>travail</em></span></span></h2>
+    <p class="idx">04 — Sélection <span id="shown"></span></p>
+  </div>
+  <div class="filters" role="toolbar" aria-label="Filtrer par catégorie" id="filters"></div>
+  <div class="grid" id="grid"></div>
+  <div class="more"><button class="btn mag" id="loadmore">Afficher plus d’images <span class="arr">↓</span></button></div>
 </section>
 
 <section class="about" id="apropos" aria-label="À propos">
