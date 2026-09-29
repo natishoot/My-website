@@ -76,14 +76,15 @@ nav .cta:hover { border-color: var(--accent); }
 .hero-slides { position: absolute; inset: 0; background: #000; }
 .hero-slides img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%;
-  opacity: 0; filter: brightness(.5) blur(8px); transform: scale(1.12);
+  opacity: 0; filter: blur(8px); transform: scale(1.12);
   transition: opacity 1.4s ease, filter 1.6s ease;
 }
-.hero-slides img.is-active { opacity: 1; filter: brightness(.55) blur(0); animation: kenburns 7s ease-out forwards; }
+.hero-slides img.is-active { opacity: 1; filter: none; animation: kenburns 7s ease-out forwards; }
 .hero-slides img:nth-child(even).is-active { animation-name: kenburns-alt; }
 @keyframes kenburns { from { transform: scale(1.12) translate(1.5%, 1%); } to { transform: scale(1.02) translate(0, 0); } }
 @keyframes kenburns-alt { from { transform: scale(1.02) translate(-1%, 0); } to { transform: scale(1.12) translate(1.5%, -1%); } }
 /* Obturateur : deux lames qui se ferment/ouvrent à chaque changement d'image */
+.hero-slides::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgb(0 0 0 / .75), rgb(0 0 0 / .1) 45%, rgb(0 0 0 / .35)); }
 .shutter { position: absolute; inset: 0; pointer-events: none; }
 .shutter::before, .shutter::after { content: ""; position: absolute; left: 0; right: 0; height: 50%; background: #000; transform: scaleY(0); }
 .shutter::before { top: 0; transform-origin: top; } .shutter::after { bottom: 0; transform-origin: bottom; }
@@ -101,8 +102,7 @@ nav .cta:hover { border-color: var(--accent); }
 .filmstrip::before { top: 3px; } .filmstrip::after { bottom: 3px; }
 .film-track { display: flex; gap: 6px; width: max-content; animation: film 90s linear infinite; }
 .filmstrip:hover .film-track { animation-play-state: paused; }
-.film-track img { height: clamp(90px, 14vw, 150px); width: auto; filter: grayscale(.6) brightness(.8); transition: filter .4s; }
-.film-track img:hover { filter: none; }
+.film-track img { height: clamp(90px, 14vw, 150px); width: auto; }
 @keyframes film { to { transform: translateX(-50%); } }
 
 .viewfinder { position: absolute; inset: clamp(70px, 10vh, 96px) var(--gutter) clamp(20px, 4vh, 40px); pointer-events: none; font: 500 .72rem var(--mono); letter-spacing: .08em; color: rgb(236 230 221 / .8); }
@@ -147,8 +147,10 @@ nav .cta:hover { border-color: var(--accent); }
 .series { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); padding: 1px 0 0 1px; }
 .serie { background: var(--bg); border: 1px solid var(--line); margin: -1px 0 0 -1px; padding: 22px 20px; text-decoration: none; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; transition: background .2s; }
 .serie { position: relative; overflow: hidden; isolation: isolate; }
-.serie::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--img) center / cover; opacity: 0; transform: scale(1.15); filter: brightness(.35); transition: opacity .5s, transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.serie::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--img) center / cover; opacity: 0; transform: scale(1.15); transition: opacity .5s, transform 1.2s cubic-bezier(.2,.7,.2,1); }
 .serie:hover::before, .serie:focus-visible::before { opacity: 1; transform: scale(1); }
+.serie::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgb(0 0 0 / .8), rgb(0 0 0 / .2)); opacity: 0; transition: opacity .5s; }
+.serie:hover::after, .serie:focus-visible::after { opacity: 1; }
 .serie:hover { background: var(--bg-2); }
 .serie strong { font-weight: 500; }
 .serie span { font: .72rem var(--mono); color: var(--muted); }
@@ -172,7 +174,7 @@ nav .cta:hover { border-color: var(--accent); }
 @media (min-width: 900px) { .tile { margin-bottom: 12px; } }
 .tile img { width: 100%; transition: transform .8s cubic-bezier(.2,.7,.2,1), opacity .4s, filter .6s; opacity: 0; }
 .tile img.loaded { opacity: 1; }
-.tile:hover img { transform: scale(1.06); filter: brightness(1.05) contrast(1.05); }
+.tile:hover img { transform: scale(1.04); }
 /* Apparition au défilement : mise au point + ouverture en rideau */
 .tile.reveal { opacity: 0; transform: translateY(40px); clip-path: inset(12% 0 12% 0); filter: blur(6px);
   transition: opacity .8s ease, transform .9s cubic-bezier(.2,.7,.2,1), clip-path 1s cubic-bezier(.7,0,.2,1), filter .9s ease; transition-delay: var(--d, 0s); }
