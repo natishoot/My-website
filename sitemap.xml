@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Domaine provisoire : remplacer natishoot-site.netlify.app par le domaine final avant soumission -->
+<!-- Adresse actuelle : natishoot-site.netlify.app. À remplacer si un domaine est branché. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://natishoot-site.netlify.app/</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/</loc><lastmod>2026-09-30</lastmod></url>
   <url><loc>https://natishoot-site.netlify.app/series/concerts.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot-site.netlify.app/series/createurs.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot-site.netlify.app/series/defile.html</loc><lastmod>2026-09-29</lastmod></url>
@@ -15,5 +15,5 @@
   <url><loc>https://natishoot-site.netlify.app/prestations/grossesse-intime.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot-site.netlify.app/prestations/portrait-mode.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot-site.netlify.app/prestations/video-live.html</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://natishoot-site.netlify.app/mentions-legales.html</loc><lastmod>2026-09-29</lastmod></url>
+  <url><loc>https://natishoot-site.netlify.app/mentions-legales.html</loc><lastmod>2026-09-30</lastmod></url>
 </urlset>

@@ -1,4 +1,5 @@
-# Phase préproduction : indexation bloquée tant que le nom de domaine définitif n'est pas branché.
-# À la mise en ligne : remplacer par "Allow: /" et la ligne Sitemap avec le domaine final.
+# Indexation ouverte. Au branchement d'un domaine : mettre à jour la ligne Sitemap.
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://natishoot-site.netlify.app/sitemap.xml

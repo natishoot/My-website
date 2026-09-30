@@ -1,11 +1,10 @@
 [build]
   publish = "."
 
-# Préproduction : pas d'indexation sur *.netlify.app (à retirer au branchement du domaine final)
+# Indexation ouverte sur natishoot-site.netlify.app (adresse principale tant qu'il n'y a pas de domaine)
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Robots-Tag = "noindex"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
