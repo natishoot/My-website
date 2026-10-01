@@ -1,10 +1,12 @@
 [build]
   publish = "."
 
-# Indexation ouverte sur natishoot-site.netlify.app (adresse principale tant qu'il n'y a pas de domaine)
+# Site en construction : noindex sur toutes les pages (retiré au lancement).
+# robots.txt reste ouvert pour que Google puisse lire ce noindex et le fichier de validation Search Console.
 [[headers]]
   for = "/*"
   [headers.values]
+    X-Robots-Tag = "noindex"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
