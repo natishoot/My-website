@@ -2,6 +2,8 @@
 """Génère les pages détail (séries et prestations) du site Natishoot.
 
 Usage : python3 tools/build_pages.py   (depuis la racine du dépôt)
+Réécrit aussi les cartes Prestations de index.html (entre PRESTATIONS:START et END).
+Tarifs : données PRESTATIONS ci-dessous, à tenir à jour avec NatiShoot_Tarifs_2026.md.
 Les photos sont lues dans images/ : <serie>-NN.jpg (1920 px) et <serie>-NN-900.jpg (vignette).
 Pour ajouter une photo : déposer les deux fichiers puis relancer le script.
 """
@@ -29,32 +31,126 @@ SERIES = [
 
 LEAD_PRESTA = ("Je prends le temps de comprendre votre demande, je me déplace avec mon matériel complet "
                "et je peux constituer une équipe avec des partenaires : vidéaste, make-up artists, "
-               "créateurs de vêtements et d’accessoires. Tarifs sur devis, adaptés à votre projet.")
+               "créateurs de vêtements et d’accessoires. Formules et tarifs ci-dessous, ajustables sur devis selon votre projet.")
+
+# Tarifs 2026 (TTC, TVA 20 %) — source : NatiShoot_Tarifs_2026.md (mise à jour du 2 octobre 2026).
+# Formule : (nom, contenu, prix TTC, unité, repère)  unité : "" | "heure" | "mois" | "photo" ; repère : "" | "reco" | "tremplin"
+TARIFS_NOTE = ("Prix TTC (TVA 20 %). Formules Tremplin accordées sur demande, après un court échange sur le projet, "
+               "dans la limite des places disponibles chaque mois.")
 
 PRESTATIONS = [
-    {"k": "portrait-mode", "n": "01", "t": "Portrait", "em": "& mode", "sub": "Studio ou extérieur", "type": "Portrait",
-     "cover": "portrait-43",
-     "items": ["Portrait individuel", "Shooting mode & créateurs", "Book modèle", "Lumière studio (Godox, Neewer)",
-               "Fonds noir, blanc, violet", "Retouche & colorimétrie"],
-     "photos": [("portrait", 12), ("createurs-collabs", 4), ("defile", 4)], "series": ["portrait", "createurs", "defile"]},
-    {"k": "concerts-evenements", "n": "02", "t": "Concerts", "em": "& événements", "sub": "Scène & événementiel", "type": "Événement",
-     "cover": "concerts-03",
-     "items": ["Concerts & festivals", "Galas, compétitions sportives", "Conventions & cosplay", "Mariages & anniversaires",
-               "Reportage documentaire", "Déplacement possible"],
-     "photos": [("concerts", 9), ("sport", 4), ("cosplay", 4), ("manifestation", 3)], "series": ["concerts", "sport", "cosplay", "reportage"]},
-    {"k": "grossesse-intime", "n": "03", "t": "Grossesse", "em": "& intime", "sub": "Moments de vie", "type": "Grossesse",
-     "cover": "grossesse-08",
-     "items": ["Séance grossesse", "Portrait en couple ou famille", "Boudoir & nu artistique (galerie privée)",
-               "Mise en scène et accessoires", "Maquillage en option (partenaires)", "Cadre bienveillant"],
+    {"k": "portrait-corporate", "n": "01", "t": "Portrait", "em": "& corporate", "sub": "Studio, extérieur, entreprise",
+     "type": "Portrait / corporate", "from": "Dès 150 €", "cover": "portrait-43", "home_img": ("img", "po45"),
+     "items": ["Portrait individuel", "Séance grossesse, couple ou famille", "Lumière studio (Godox, Neewer)",
+               "Fonds noir, blanc, violet", "Retouche & colorimétrie", "Équipe, gestes métier, lieu et ambiance"],
      "note": "Les séances boudoir & nu artistique sont présentées uniquement sur demande (galerie privée).",
-     "photos": [("grossesse", 9)], "series": ["grossesse", "portrait"]},
-    {"k": "video-live", "n": "04", "t": "Vidéo", "em": "& live", "sub": "Production complète", "type": "Vidéo / Live",
-     "cover": "concerts-07",
-     "items": ["Captation vidéo & photo", "Montage & colorimétrie", "Live streaming, 1 ou plusieurs caméras",
-               "Diffusion directe sur votre chaîne", "Équipe : modèles, maquilleuses, coiffeuses", "Location de matériel supplémentaire"],
+     "groups": [
+         ("Portrait", [
+             ("Portrait Essentiel", "45 min — 6 photos retouchées — galerie privée", "150 €", "", ""),
+             ("Pack Découverte", "2 h — 15 photos — accompagnement poses et sélection", "300 €", "", ""),
+             ("Portrait Signature", "2 h 30 — 25 photos — direction artistique", "450 €", "", "reco"),
+             ("Portrait professionnel", "8 portraits retouchés pour site et réseaux", "250 €", "", ""),
+         ]),
+         ("Corporate", [
+             ("Corporate demi-journée", "Jusqu’à 4 h — équipe, gestes métier, lieu et ambiance", "780 €", "", ""),
+             ("Corporate journée", "Jusqu’à 8 h — banque d’images cohérente", "1 440 €", "", ""),
+             ("Campagne de lancement", "Conception légère, production et images de campagne", "Dès 1 500 €", "", ""),
+         ]),
+     ],
+     "photos": [("portrait", 12), ("grossesse", 6)], "series": ["portrait", "grossesse"]},
+    {"k": "evenements-mariages", "n": "02", "t": "Événements", "em": "& mariages", "sub": "Fêtes, galas, cérémonies",
+     "type": "Événement / mariage", "from": "Dès 300 €", "cover": "sport-01", "home_img": ("img", "sp5"),
+     "items": ["Galas, compétitions sportives", "Conventions & cosplay", "Mariages & anniversaires",
+               "Reportage documentaire", "Galerie privée en ligne", "Déplacement possible"],
+     "groups": [
+         ("Événement", [
+             ("Événement Essentiel", "2 h — moments clés — livraison numérique", "300 €", "", ""),
+             ("Événement demi-journée", "4 h — ambiance, invités et détails", "550 €", "", ""),
+             ("Événement journée", "8 h — sélection et galerie privée", "950 €", "", ""),
+             ("Événement longue durée", "10 h — couverture élargie", "1 200 €", "", ""),
+         ]),
+         ("Mariage", [
+             ("Mariage civil", "Cérémonie, couple et groupes — galerie privée", "550 €", "", ""),
+             ("Mariage Essentiel", "8 h — 300 photos retouchées — album 21 × 28 cm", "1 690 €", "", ""),
+             ("Mariage Complet", "10 h — 500 photos — reel 30 s — album 21 × 28 cm", "2 200 €", "", "reco"),
+             ("Mariage photo et film", "Forfait complet avec film de 5 à 6 min", "Dès 3 200 €", "", ""),
+         ]),
+     ],
+     "photos": [("sport", 8), ("cosplay", 8)], "series": ["sport", "cosplay", "reportage"]},
+    {"k": "mode-concerts", "n": "03", "t": "Mode", "em": "& concerts", "sub": "Podiums, créateurs, scène",
+     "type": "Mode / concert", "from": "Dès 300 €", "cover": "defile-08", "home_img": ("src", "images/defile-08.jpg"),
+     "items": ["Défilés : podium, coulisses, ambiance", "Shooting mode & créateurs", "Book modèle",
+               "Concerts & festivals", "Scène, ambiance, coulisses", "Sélection retouchée"],
+     "groups": [
+         ("Mode", [
+             ("Défilé Essentiel", "Jusqu’à 2 h — passages clés", "300 €", "", ""),
+             ("Défilé Étendu", "Jusqu’à 4 h — podium, coulisses, ambiance", "550 €", "", ""),
+             ("Journée Mode", "Jusqu’à 8 h — tout l’événement", "950 €", "", ""),
+             ("Éditorial Signature", "Shooting dirigé — 25 images — univers personnalisé", "Dès 450 €", "", ""),
+         ]),
+         ("Concert", [
+             ("Concert Essentiel", "Jusqu’à 2 h — sélection retouchée", "300 €", "", ""),
+             ("Concert Étendu", "Jusqu’à 4 h — scène, ambiance, coulisses", "550 €", "", ""),
+             ("Tremplin Concert", "Jeunes projets — couverture courte", "220 €", "", "tremplin"),
+         ]),
+     ],
+     "photos": [("defile", 8), ("createurs-collabs", 4), ("concerts", 8)], "series": ["defile", "createurs", "concerts"]},
+    {"k": "video-captation", "n": "04", "t": "Vidéo", "em": "& captation", "sub": "Contenu artiste, live",
+     "type": "Vidéo / captation", "from": "Dès 350 €", "cover": "concerts-07", "home_img": ("img", "co6"),
+     "items": ["Vidéos verticales pour vos réseaux", "Captation 1 ou 2 angles", "Rushes étalonnés",
+               "Montage & colorimétrie", "Multicam sur devis", "Équipe : modèles, maquilleuses, coiffeuses"],
      "link": ("Voir les vidéos NatiShoot", PORTFOLIO + "videos-natishoot"),
+     "groups": [
+         ("Contenu artiste", [
+             ("Session Création", "2 h de tournage — 2 vidéos verticales finalisées", "450 €", "", ""),
+             ("Demi-journée Contenu", "Jusqu’à 4 h — 4 formats courts finalisés", "650 €", "", "reco"),
+             ("Tremplin Contenu", "Projet émergent — format allégé — 2 projets/mois max", "280 €", "", "tremplin"),
+         ]),
+         ("Captation", [
+             ("Captation Angle Unique", "3 h de présence dont 2 h de tournage — 1 cadre principal — rushes étalonnés", "350 €", "", ""),
+             ("Captation Angle Unique + montage", "La même captation + montage d’une vidéo de 3 min (autres durées sur devis)", "500 €", "", ""),
+             ("Captation Double Regard", "3 h de présence dont 2 h de tournage — 2 angles — rushes étalonnés", "550 €", "", ""),
+             ("Captation Double Regard + montage", "La même captation + montage d’une vidéo de 3 min (autres durées sur devis)", "750 €", "", ""),
+             ("Multicam Monté", "Plusieurs angles, montage, étalonnage et exports", "Sur devis", "", ""),
+             ("Tremplin Double Regard", "Jeunes projets — captation 2 angles", "400 €", "", "tremplin"),
+         ]),
+     ],
      "photos": [("concerts", 8)], "series": ["concerts"]},
+    {"k": "photo-video", "n": "05", "t": "Photo", "em": "+ vidéo", "sub": "Récits complets",
+     "type": "Photo + vidéo", "from": "Dès 1 200 €", "cover": "portrait-20", "home_img": ("img", "co2"),
+     "items": ["Portraits et interviews", "Films courts et récap", "Formats verticaux", "Contenu régulier mensuel"],
+     "link": ("Voir les vidéos NatiShoot", PORTFOLIO + "videos-natishoot"),
+     "groups": [
+         ("Formules photo + vidéo", [
+             ("Visages Essentiel", "1 lieu — 2 h — 10 photos — interview ≤ 60 s", "1 200 €", "", ""),
+             ("Visages Histoire", "4 h — 20 photos — film ≤ 2 min — 2 interviews — 1 format vertical", "2 400 €", "", "reco"),
+             ("Visages Signature", "4 h — 25 photos — film 2 à 3 min — 2 interviews — 2 formats verticaux", "3 600 €", "", ""),
+             ("Artist Content Day", "4 h — 15 portraits — interview ≤ 90 s — 3 vidéos verticales", "1 440 €", "", ""),
+             ("Événement Récit", "4 h — 40 photos — film récap ≤ 60 s — 1 interview", "1 440 €", "", ""),
+             ("Mini-documentaire", "1 jour — 3 intervenants — film 3 à 5 min", "Dès 3 600 €", "", ""),
+             ("Contenu Régulier", "1 séance/mois ≤ 2 h — 10 photos + 2 vidéos ≤ 30 s — engagement 3 mois", "600 €", "mois", ""),
+         ]),
+     ],
+     "photos": [("portrait", 6), ("concerts", 6)], "series": ["portrait", "concerts"]},
+    {"k": "options", "n": "06", "t": "Options", "em": "à la carte", "sub": "À ajouter à une prestation",
+     "type": "Option", "from": "Dès 24 €", "cover": "divers-12", "home_img": ("img", "di12"),
+     "items": [],
+     "groups": [
+         ("Options", [
+             ("Heure supplémentaire événement", "", "120 €", "heure", ""),
+             ("Reel ajouté à une prestation", "Format court pour vos réseaux", "120 €", "", ""),
+             ("Album photo", "", "Dès 90 €", "", ""),
+             ("Interview courte", "1 personne — vidéo ≤ 90 s sous-titrée", "480 €", "", ""),
+             ("3 déclinaisons verticales", "À partir du montage validé — ≤ 30 s chacune", "110 €", "", ""),
+             ("Retouche avancée", "Détourage ou retouche localisée", "Dès 24 €", "photo", ""),
+         ]),
+     ],
+     "photos": [], "series": []},
 ]
+
+# Anciennes adresses → nouvelles (redirections 301 dans netlify.toml)
+OLD_PRESTA = {"portrait-mode": "portrait-corporate", "concerts-evenements": "evenements-mariages",
+              "grossesse-intime": "portrait-corporate", "video-live": "video-captation"}
 
 
 def jpeg_size(path):
@@ -155,10 +251,47 @@ def build_series():
         open(os.path.join(ROOT, "series", f"{s['k']}.html"), "w").write(out)
 
 
+UNITS = {"": "", "heure": " / heure", "mois": " / mois", "photo": " / photo"}
+TAGS = {"": "", "reco": '<em class="tag">Recommandé</em>', "tremplin": '<em class="tag sol">Tremplin · sur demande</em>'}
+
+
+def nb(t):
+    """Espaces insécables dans les montants."""
+    return t.replace(" ", "\u00a0")
+
+
+def price(f):
+    return nb(f[2]) + UNITS[f[3]]
+
+
+def formulas(p):
+    return [f for _, fs in p["groups"] for f in fs]
+
+
+def tarifs_html(p):
+    out = ['<h2>Formules &amp; tarifs</h2>']
+    for name, fs in p["groups"]:
+        if len(p["groups"]) > 1:
+            out.append(f'<h3 class="tg">{html.escape(name)}</h3>')
+        rows = "".join(
+            f'<li><div class="tn"><b>{html.escape(f[0])}</b>{TAGS[f[4]]}'
+            + (f'<span>{html.escape(f[1])}</span>' if f[1] else "")
+            + f'</div><span class="tp">{html.escape(price(f))}</span></li>' for f in fs)
+        out.append(f'<ul class="tarifs">{rows}</ul>')
+    out.append(f'<p class="note">{TARIFS_NOTE}</p>')
+    return "\n    ".join(out)
+
+
 def build_prestations():
     os.makedirs(os.path.join(ROOT, "prestations"), exist_ok=True)
+    keep = {f"{p['k']}.html" for p in PRESTATIONS}
+    for old in glob.glob(os.path.join(ROOT, "prestations", "*.html")):
+        if os.path.basename(old) not in keep:
+            os.remove(old)
+    total = f"{len(PRESTATIONS):02d}"
     for p in PRESTATIONS:
         items = "".join(f"<li>{html.escape(i)}</li>" for i in p["items"])
+        inclus = f"<h2>Ce qui est inclus</h2>\n    <ul>{items}</ul>" if items else ""
         note = f'<p class="note">{p["note"]}</p>' if p.get("note") else ""
         link = f'<a class="btn" href="{p["link"][1]}" target="_blank" rel="noopener">{p["link"][0]} ↗</a>' if p.get("link") else ""
         cta = f'../index.html?type={p["type"].replace(" ", "%20")}#contact'
@@ -166,36 +299,63 @@ def build_prestations():
         for slug, n in p["photos"]:
             pics += photos(slug)[:n]
         grid = "".join(tile(n, w, h, f"{p['t']} {p['em']} — photographie NatiShoot") for n, w, h in pics)
+        images = (f'<div class="sub" style="margin-top:0"><h2>En images</h2><span class="mono">{len(pics)} photos</span></div>\n'
+                  f'<div class="grid">{grid}</div>\n') if pics else ""
         others = "".join(
             f'<a class="chip{" on" if o["k"] == p["k"] else ""}" href="{o["k"]}.html">{o["t"]} {o["em"]}</a>' for o in PRESTATIONS)
         linked = "".join(f'<a class="chip" href="../series/{k}.html">Série {next(s["t"] for s in SERIES if s["k"] == k)}</a>' for k in p["series"])
         body = f"""<section class="head">
-  <div><div class="eyebrow">Prestation {p['n']} / 04 — {p['sub']}</div><h1>{p['t']} <em>{p['em']}</em></h1></div>
+  <div><div class="eyebrow">Prestation {p['n']} / {total} — {p['sub']}</div><h1>{p['t']} <em>{p['em']}</em></h1></div>
   <div><p class="lead">{LEAD_PRESTA}</p>
+  <div class="meta"><div><b>{nb(p['from'])}</b><span class="mono">TTC</span></div></div>
   <div class="cta"><a class="btn solid" href="{cta}">Demander un devis →</a>{link}</div></div>
 </section>
 <section class="detail">
   <div class="cover"><img src="../images/{p['cover']}.jpg" alt="{p['t']} {p['em']} — NatiShoot"></div>
   <div>
-    <h2>Ce qui est inclus</h2>
-    <ul>{items}</ul>
+    {inclus}
     {note}
-    <h2>Tarif</h2>
-    <p class="lead" style="margin-bottom:28px">Sur devis, selon la durée, le lieu et l’usage des images.</p>
+    {tarifs_html(p)}
     <div class="chips">{linked}</div>
   </div>
 </section>
-<div class="sub" style="margin-top:0"><h2>En images</h2><span class="mono">{len(pics)} photos</span></div>
-<div class="grid">{grid}</div>
-<section class="others"><div class="eyebrow">Autres prestations</div><h2>Tout ce que je propose</h2><div class="chips">{others}</div></section>
+{images}<section class="others"><div class="eyebrow">Autres prestations</div><h2>Tout ce que je propose</h2><div class="chips">{others}</div></section>
 <section class="band"><p>{p['t']} <em>{p['em']}</em></p><a class="btn" href="{cta}">Demander un devis →</a></section>"""
+        resume = p["items"][:3] or [f[0] for f in formulas(p)[:3]]
         out = page(f"{p['t']} {p['em']} — Prestation photo NatiShoot, Paris",
-                   f"{p['t']} {p['em']} par NatiShoot, photographe à Paris : {', '.join(p['items'][:3]).lower()}. Sur devis.",
+                   f"{p['t']} {p['em']} par NatiShoot, photographe à Paris : {', '.join(resume).lower()}. {p['from']} TTC.",
                    f"prestations/{p['k']}.html", body)
         open(os.path.join(ROOT, "prestations", f"{p['k']}.html"), "w").write(out)
+
+
+def build_home():
+    """Réécrit les cartes Prestations de l'accueil entre les repères PRESTATIONS:START / END."""
+    total = f"{len(PRESTATIONS):02d}"
+    cards = []
+    for p in PRESTATIONS:
+        lis = "".join(f"<li>{html.escape(f[0])} — {html.escape(price(f))}</li>" for f in formulas(p)[:6])
+        kind, val = p["home_img"]
+        img = f'data-img="{val}"' if kind == "img" else f'data-src="{val}"'
+        cards.append(f"""    <article class="svc">
+      <div class="l">
+        <div class="top mono"><span>{p['n']} / {total}</span><span>{html.escape(p['sub'])}</span></div>
+        <h3><a class="stretch" href="prestations/{p['k']}.html">{p['t']} <em>{html.escape(p['em'])}</em></a></h3>
+        <p class="price">{nb(p['from'])} <span class="mono">TTC</span></p>
+        <ul>{lis}</ul>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="{p['type']}">Demander un devis <span class="arr">→</span></a></div>
+      </div>
+      <div class="r" {img}></div>
+    </article>""")
+    path = os.path.join(ROOT, "index.html")
+    s = open(path).read()
+    a = s.index("<!-- PRESTATIONS:START -->") + len("<!-- PRESTATIONS:START -->")
+    b = s.index("    <!-- PRESTATIONS:END -->")
+    s = s[:a] + "\n" + "\n".join(cards) + "\n" + s[b:]
+    open(path, "w").write(s)
 
 
 if __name__ == "__main__":
     build_series()
     build_prestations()
+    build_home()
     print("Pages générées :", len(SERIES), "séries,", len(PRESTATIONS), "prestations")

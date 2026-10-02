@@ -258,7 +258,9 @@ section{position:relative}
 .stack{padding:0 var(--pad);display:grid;gap:0}
 .svc{position:sticky;top:clamp(80px,11vh,110px);min-height:min(78vh,720px);background:var(--bg2);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;margin-bottom:5vh;transform-origin:50% 0}
 .svc .l{padding:clamp(24px,3.4vw,56px);display:flex;flex-direction:column;justify-content:space-between;gap:30px}
-.svc .top{display:flex;justify-content:space-between;color:var(--mute)}
+.svc .top{display:flex;justify-content:space-between;gap:16px;color:var(--mute)}
+.svc .top span:first-child{white-space:nowrap}
+.svc .top span:last-child{text-align:right}
 .svc h3{font:400 clamp(30px,3.6vw,62px)/.9 var(--disp);text-transform:uppercase}
 .svc h3 em{color:var(--acc);font-size:.8em}
 .svc ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px 26px;font-size:15px}
@@ -266,6 +268,8 @@ section{position:relative}
 .svc li::before{content:"→";color:var(--acc)}
 .svc .foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
 .svc .price{font:italic 400 clamp(22px,2vw,30px)/1 var(--serif)}
+.svc .price .mono{font-style:normal;color:var(--mute);margin-left:4px}
+.svc:nth-child(4) .price .mono{color:rgba(0,0,0,.6)}
 .svc .r{position:relative;overflow:hidden}
 .svc .r img{position:absolute;inset:0;width:100%;height:120%;object-fit:cover}
 .svc:nth-child(2){background:#16110e}.svc:nth-child(3){background:#120f0d}.svc:nth-child(4){background:var(--acc);color:#000;border-color:var(--acc)}
@@ -492,45 +496,71 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 <section class="services" id="prestations" aria-label="Prestations">
   <div class="sec-head">
     <h2 class="h2"><span class="line-mask"><span>Presta</span></span><span class="line-mask"><span>tions <em>sur mesure</em></span></span></h2>
-    <p class="idx">03 — Tarifs sur devis, adaptés à votre projet</p>
+    <p class="idx">03 — Formules et tarifs 2026, prix TTC</p>
   </div>
   <div class="stack" id="stack">
+    <!-- PRESTATIONS:START -->
     <article class="svc">
       <div class="l">
-        <div class="top mono"><span>01 / 04</span><span>Studio ou extérieur</span></div>
-        <h3><a class="stretch" href="prestations/portrait-mode.html">Portrait <em>&amp; mode</em></a></h3>
-        <ul><li>Portrait individuel</li><li>Shooting mode &amp; créateurs</li><li>Book modèle</li><li>Lumière studio (Godox, Neewer)</li><li>Fonds noir, blanc, violet</li><li>Retouche &amp; colorimétrie</li></ul>
-        <div class="foot"><span class="more-link">Voir le détail <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Portrait">Demander un devis <span class="arr">→</span></a></div>
+        <div class="top mono"><span>01 / 06</span><span>Studio, extérieur, entreprise</span></div>
+        <h3><a class="stretch" href="prestations/portrait-corporate.html">Portrait <em>&amp; corporate</em></a></h3>
+        <p class="price">Dès 150 € <span class="mono">TTC</span></p>
+        <ul><li>Portrait Essentiel — 150 €</li><li>Pack Découverte — 300 €</li><li>Portrait Signature — 450 €</li><li>Portrait professionnel — 250 €</li><li>Corporate demi-journée — 780 €</li><li>Corporate journée — 1 440 €</li></ul>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Portrait / corporate">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-img="po45"></div>
     </article>
     <article class="svc">
       <div class="l">
-        <div class="top mono"><span>02 / 04</span><span>Scène &amp; événementiel</span></div>
-        <h3><a class="stretch" href="prestations/concerts-evenements.html">Concerts <em>&amp; événements</em></a></h3>
-        <ul><li>Concerts &amp; festivals</li><li>Galas, compétitions sportives</li><li>Conventions &amp; cosplay</li><li>Mariages &amp; anniversaires</li><li>Reportage documentaire</li><li>Déplacement possible</li></ul>
-        <div class="foot"><span class="more-link">Voir le détail <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Événement">Demander un devis <span class="arr">→</span></a></div>
+        <div class="top mono"><span>02 / 06</span><span>Fêtes, galas, cérémonies</span></div>
+        <h3><a class="stretch" href="prestations/evenements-mariages.html">Événements <em>&amp; mariages</em></a></h3>
+        <p class="price">Dès 300 € <span class="mono">TTC</span></p>
+        <ul><li>Événement Essentiel — 300 €</li><li>Événement demi-journée — 550 €</li><li>Événement journée — 950 €</li><li>Événement longue durée — 1 200 €</li><li>Mariage civil — 550 €</li><li>Mariage Essentiel — 1 690 €</li></ul>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Événement / mariage">Demander un devis <span class="arr">→</span></a></div>
+      </div>
+      <div class="r" data-img="sp5"></div>
+    </article>
+    <article class="svc">
+      <div class="l">
+        <div class="top mono"><span>03 / 06</span><span>Podiums, créateurs, scène</span></div>
+        <h3><a class="stretch" href="prestations/mode-concerts.html">Mode <em>&amp; concerts</em></a></h3>
+        <p class="price">Dès 300 € <span class="mono">TTC</span></p>
+        <ul><li>Défilé Essentiel — 300 €</li><li>Défilé Étendu — 550 €</li><li>Journée Mode — 950 €</li><li>Éditorial Signature — Dès 450 €</li><li>Concert Essentiel — 300 €</li><li>Concert Étendu — 550 €</li></ul>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Mode / concert">Demander un devis <span class="arr">→</span></a></div>
+      </div>
+      <div class="r" data-src="images/defile-08.jpg"></div>
+    </article>
+    <article class="svc">
+      <div class="l">
+        <div class="top mono"><span>04 / 06</span><span>Contenu artiste, live</span></div>
+        <h3><a class="stretch" href="prestations/video-captation.html">Vidéo <em>&amp; captation</em></a></h3>
+        <p class="price">Dès 350 € <span class="mono">TTC</span></p>
+        <ul><li>Session Création — 450 €</li><li>Demi-journée Contenu — 650 €</li><li>Tremplin Contenu — 280 €</li><li>Captation Angle Unique — 350 €</li><li>Captation Angle Unique + montage — 500 €</li><li>Captation Double Regard — 550 €</li></ul>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Vidéo / captation">Demander un devis <span class="arr">→</span></a></div>
+      </div>
+      <div class="r" data-img="co6"></div>
+    </article>
+    <article class="svc">
+      <div class="l">
+        <div class="top mono"><span>05 / 06</span><span>Récits complets</span></div>
+        <h3><a class="stretch" href="prestations/photo-video.html">Photo <em>+ vidéo</em></a></h3>
+        <p class="price">Dès 1 200 € <span class="mono">TTC</span></p>
+        <ul><li>Visages Essentiel — 1 200 €</li><li>Visages Histoire — 2 400 €</li><li>Visages Signature — 3 600 €</li><li>Artist Content Day — 1 440 €</li><li>Événement Récit — 1 440 €</li><li>Mini-documentaire — Dès 3 600 €</li></ul>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Photo + vidéo">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-img="co2"></div>
     </article>
     <article class="svc">
       <div class="l">
-        <div class="top mono"><span>03 / 04</span><span>Moments de vie</span></div>
-        <h3><a class="stretch" href="prestations/grossesse-intime.html">Grossesse <em>&amp; intime</em></a></h3>
-        <ul><li>Séance grossesse</li><li>Portrait en couple ou famille</li><li>Boudoir &amp; nu artistique (galerie privée)</li><li>Mise en scène et accessoires</li><li>Maquillage en option (partenaires)</li><li>Cadre bienveillant</li></ul>
-        <div class="foot"><span class="more-link">Voir le détail <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Grossesse">Demander un devis <span class="arr">→</span></a></div>
+        <div class="top mono"><span>06 / 06</span><span>À ajouter à une prestation</span></div>
+        <h3><a class="stretch" href="prestations/options.html">Options <em>à la carte</em></a></h3>
+        <p class="price">Dès 24 € <span class="mono">TTC</span></p>
+        <ul><li>Heure supplémentaire événement — 120 € / heure</li><li>Reel ajouté à une prestation — 120 €</li><li>Album photo — Dès 90 €</li><li>Interview courte — 480 €</li><li>3 déclinaisons verticales — 110 €</li><li>Retouche avancée — Dès 24 € / photo</li></ul>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Option">Demander un devis <span class="arr">→</span></a></div>
       </div>
-      <div class="r" data-img="gr7"></div>
+      <div class="r" data-img="di12"></div>
     </article>
-    <article class="svc">
-      <div class="l">
-        <div class="top mono"><span>04 / 04</span><span>Production complète</span></div>
-        <h3><a class="stretch" href="prestations/video-live.html">Vidéo <em>&amp; live</em></a></h3>
-        <ul><li>Captation vidéo &amp; photo</li><li>Montage &amp; colorimétrie</li><li>Live streaming, 1 ou plusieurs caméras</li><li>Diffusion directe sur votre chaîne</li><li>Équipe : modèles, maquilleuses, coiffeuses</li><li>Location de matériel supplémentaire</li></ul>
-        <div class="foot"><span class="more-link">Voir le détail <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Vidéo / Live">Demander un devis <span class="arr">→</span></a></div>
-      </div>
-      <div class="r" data-img="co6"></div>
-    </article>
+    <!-- PRESTATIONS:END -->
   </div>
 </section>
 
@@ -724,7 +754,7 @@ $('#floaters').innerHTML=['po30','co12','po68'].map(id=>`<figure data-speed><img
 $('#htrack').innerHTML=`<div class="intro"><div class="eyebrow">02 — Séries</div><h2 class="h2"><span class="line-mask"><span>Dix</span></span><span class="line-mask"><span>univers</span></span><span class="line-mask"><span><em>visuels</em></span></span></h2><p>Du studio à la fosse du concert : une même obsession pour la lumière et l’émotion. Cliquez sur une série pour la découvrir en entier.</p></div>`+SERIES.map((s,i)=>`<a class="card" href="series/${s.k}.html"><div class="img" data-clip><span class="num mono">${String(i+1).padStart(2,'0')}</span><span class="cnt mono">${s.n} photos</span><img src="${s.src||U(s.img,1200)}" alt="Série ${CATS[s.k]}" loading="lazy"><h3>${CATS[s.k]}</h3></div><p><span>${s.d}</span><span>Voir →</span></p></a>`).join('')+
  `<a class="card private" href="#contact" data-type="Boudoir"><div class="img" data-clip><span class="num mono">10</span><span class="cnt mono">23 photos</span><span class="ghost" aria-hidden="true">NU</span><span class="lock"><svg width="20" height="22" viewBox="0 0 20 22" fill="none" stroke="#fff" stroke-width="1.4"><rect x="1.5" y="9" width="17" height="12" rx="2"/><path d="M5 9V6a5 5 0 0 1 10 0v3"/></svg></span><h3>Boudoir<br>&amp; nu</h3></div><p><span>Galerie privée, sur demande</span><span>Demander →</span></p></a>`;
 // service images
-$$('.svc .r').forEach(el=>{const id=el.dataset.img;el.innerHTML=`<img src="${U(id,1200)}" alt="${ALT(id)}" loading="lazy">`});
+$$('.svc .r').forEach(el=>{const id=el.dataset.img;el.innerHTML=id?`<img src="${U(id,1200)}" alt="${ALT(id)}" loading="lazy">`:`<img src="${el.dataset.src}" alt="Défilé / Mode — photographie NatiShoot" loading="lazy">`});
 $('#qimg').innerHTML=`<img src="${U('po58',1920)}" alt="" loading="lazy">`;
 $('#aimg').innerHTML=`<img src="${U('po44',1200)}" alt="Portrait réalisé par NatiShoot" loading="lazy" style="width:100%;height:120%;object-fit:cover">`;
 

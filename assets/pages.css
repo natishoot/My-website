@@ -103,3 +103,14 @@ footer a:hover{color:var(--ink)}
 }
 @media (max-width:420px){.grid{column-gap:8px}.tile{margin-bottom:8px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none;clip-path:none}}
+/* Formules & tarifs */
+.detail h3.tg{font:400 11px/1 ui-monospace,'SF Mono',Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:8px 0 6px}
+.detail ul.tarifs{margin-bottom:28px}
+.detail ul.tarifs li{justify-content:space-between;align-items:baseline;gap:18px}
+.detail ul.tarifs li::before{content:none}
+.detail .tn{display:flex;flex-direction:column;gap:4px}
+.detail .tn b{font-weight:500}
+.detail .tn span{color:var(--mute);font-size:14px}
+.detail .tp{white-space:nowrap;font-size:17px;color:var(--ink)}
+.detail .tag{align-self:flex-start;font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#000;background:var(--acc);border-radius:999px;padding:3px 8px}
+.detail .tag.sol{background:none;color:var(--acc);border:1px solid var(--acc)}
