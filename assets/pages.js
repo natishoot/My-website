@@ -1,5 +1,8 @@
 /* Pages détail : apparition des photos au défilement + visionneuse */
 (() => {
+  const nav = document.querySelector(".nav");
+  if (nav) { const upd = () => nav.classList.toggle("solid", scrollY > 60); addEventListener("scroll", upd, { passive: true }); upd(); }
+
   const tiles = [...document.querySelectorAll(".tile")];
   const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!calm && "IntersectionObserver" in window) {
@@ -9,7 +12,9 @@
     tiles.forEach((t, i) => { t.style.transitionDelay = `${(i % 3) * 0.08}s`; io.observe(t); });
   } else tiles.forEach(t => t.classList.add("in"));
 
-  const lb = document.getElementById("lb"), img = document.getElementById("lbi");
+  const lb = document.getElementById("lb");
+  if (!lb) return;
+  const img = document.getElementById("lbi");
   let i = 0;
   const pad = n => String(n).padStart(2, "0");
   const show = n => {

@@ -198,6 +198,7 @@ def page(title, desc, canonical, body):
 <link rel="canonical" href="https://natishoot-site.netlify.app/{canonical}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:image" content="https://natishoot-site.netlify.app/images/portrait-01.jpg">
 <link rel="preload" href="../fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/pages.css">
 </head>
@@ -205,7 +206,7 @@ def page(title, desc, canonical, body):
 <header class="nav">
   <a class="logo" href="../index.html">NATISHOOT <small>photography</small></a>
   <a class="back" href="../index.html#series">← Retour à l’accueil</a>
-  <a class="btn" href="../index.html#contact">Réserver un shooting →</a>
+  <a class="btn" href="../index.html#contact">Demander un devis →</a>
 </header>
 <main>
 {body}
@@ -241,7 +242,7 @@ def build_series():
   <div><div class="eyebrow">Série</div><h1>{s['t']} <em>en images</em></h1></div>
   <div><p class="lead">{s['d']}. Cliquez sur une photo pour l’afficher en grand, format d’origine.</p>
   <div class="meta"><div><b>{total}</b><span class="mono">photos</span></div></div>
-  <div class="cta"><a class="btn solid" href="../index.html#contact">Réserver un shooting →</a><a class="btn" href="{PORTFOLIO}{s['parts'][0][2]}" target="_blank" rel="noopener">Portfolio Adobe ↗</a></div></div>
+  <div class="cta"><a class="btn solid" href="../index.html#contact">Demander un devis →</a><a class="btn" href="{PORTFOLIO}{s['parts'][0][2]}" target="_blank" rel="noopener">Portfolio Adobe ↗</a></div></div>
 </section>"""]
         for label, pics, _ in parts:
             if len(parts) > 1:
