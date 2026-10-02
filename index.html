@@ -518,7 +518,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <ul><li>Événement Essentiel — 300 €</li><li>Événement demi-journée — 550 €</li><li>Événement journée — 950 €</li><li>Événement longue durée — 1 200 €</li><li>Mariage civil — 550 €</li><li>Mariage Essentiel — 1 690 €</li></ul>
         <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Événement / mariage">Demander un devis <span class="arr">→</span></a></div>
       </div>
-      <div class="r" data-img="sp5"></div>
+      <div class="r" data-src="images/carte-evenements.jpg" data-alt="Événements &amp; mariages — photographie NatiShoot"></div>
     </article>
     <article class="svc">
       <div class="l">
@@ -528,7 +528,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <ul><li>Défilé Essentiel — 300 €</li><li>Défilé Étendu — 550 €</li><li>Journée Mode — 950 €</li><li>Éditorial Signature — Dès 450 €</li><li>Concert Essentiel — 300 €</li><li>Concert Étendu — 550 €</li></ul>
         <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Mode / concert">Demander un devis <span class="arr">→</span></a></div>
       </div>
-      <div class="r" data-src="images/defile-08.jpg"></div>
+      <div class="r" data-src="images/carte-mode.jpg" data-alt="Mode &amp; concerts — photographie NatiShoot"></div>
     </article>
     <article class="svc">
       <div class="l">
@@ -754,7 +754,7 @@ $('#floaters').innerHTML=['po30','co12','po68'].map(id=>`<figure data-speed><img
 $('#htrack').innerHTML=`<div class="intro"><div class="eyebrow">02 — Séries</div><h2 class="h2"><span class="line-mask"><span>Dix</span></span><span class="line-mask"><span>univers</span></span><span class="line-mask"><span><em>visuels</em></span></span></h2><p>Du studio à la fosse du concert : une même obsession pour la lumière et l’émotion. Cliquez sur une série pour la découvrir en entier.</p></div>`+SERIES.map((s,i)=>`<a class="card" href="series/${s.k}.html"><div class="img" data-clip><span class="num mono">${String(i+1).padStart(2,'0')}</span><span class="cnt mono">${s.n} photos</span><img src="${s.src||U(s.img,1200)}" alt="Série ${CATS[s.k]}" loading="lazy"><h3>${CATS[s.k]}</h3></div><p><span>${s.d}</span><span>Voir →</span></p></a>`).join('')+
  `<a class="card private" href="#contact" data-type="Boudoir"><div class="img" data-clip><span class="num mono">10</span><span class="cnt mono">23 photos</span><span class="ghost" aria-hidden="true">NU</span><span class="lock"><svg width="20" height="22" viewBox="0 0 20 22" fill="none" stroke="#fff" stroke-width="1.4"><rect x="1.5" y="9" width="17" height="12" rx="2"/><path d="M5 9V6a5 5 0 0 1 10 0v3"/></svg></span><h3>Boudoir<br>&amp; nu</h3></div><p><span>Galerie privée, sur demande</span><span>Demander →</span></p></a>`;
 // service images
-$$('.svc .r').forEach(el=>{const id=el.dataset.img;el.innerHTML=id?`<img src="${U(id,1200)}" alt="${ALT(id)}" loading="lazy">`:`<img src="${el.dataset.src}" alt="Défilé / Mode — photographie NatiShoot" loading="lazy">`});
+$$('.svc .r').forEach(el=>{const id=el.dataset.img;el.innerHTML=id?`<img src="${U(id,1200)}" alt="${ALT(id)}" loading="lazy">`:`<img src="${el.dataset.src}" alt="${el.dataset.alt||'Photographie NatiShoot'}" loading="lazy">`});
 $('#qimg').innerHTML=`<img src="${U('po58',1920)}" alt="" loading="lazy">`;
 $('#aimg').innerHTML=`<img src="${U('po44',1200)}" alt="Portrait réalisé par NatiShoot" loading="lazy" style="width:100%;height:120%;object-fit:cover">`;
 

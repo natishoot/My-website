@@ -59,7 +59,7 @@ PRESTATIONS = [
      ],
      "photos": [("portrait", 12), ("grossesse", 6)], "series": ["portrait", "grossesse"]},
     {"k": "evenements-mariages", "n": "02", "t": "Événements", "em": "& mariages", "sub": "Fêtes, galas, cérémonies",
-     "type": "Événement / mariage", "from": "Dès 300 €", "cover": "sport-01", "home_img": ("img", "sp5"),
+     "type": "Événement / mariage", "from": "Dès 300 €", "cover": "sport-01", "home_img": ("src", "images/carte-evenements.jpg"),
      "items": ["Galas, compétitions sportives", "Conventions & cosplay", "Mariages & anniversaires",
                "Reportage documentaire", "Galerie privée en ligne", "Déplacement possible"],
      "groups": [
@@ -78,7 +78,7 @@ PRESTATIONS = [
      ],
      "photos": [("sport", 8), ("cosplay", 8)], "series": ["sport", "cosplay", "reportage"]},
     {"k": "mode-concerts", "n": "03", "t": "Mode", "em": "& concerts", "sub": "Podiums, créateurs, scène",
-     "type": "Mode / concert", "from": "Dès 300 €", "cover": "defile-08", "home_img": ("src", "images/defile-08.jpg"),
+     "type": "Mode / concert", "from": "Dès 300 €", "cover": "defile-08", "home_img": ("src", "images/carte-mode.jpg"),
      "items": ["Défilés : podium, coulisses, ambiance", "Shooting mode & créateurs", "Book modèle",
                "Concerts & festivals", "Scène, ambiance, coulisses", "Sélection retouchée"],
      "groups": [
@@ -335,7 +335,8 @@ def build_home():
     for p in PRESTATIONS:
         lis = "".join(f"<li>{html.escape(f[0])} — {html.escape(price(f))}</li>" for f in formulas(p)[:6])
         kind, val = p["home_img"]
-        img = f'data-img="{val}"' if kind == "img" else f'data-src="{val}"'
+        alt = f"{p['t']} {html.escape(p['em'])} — photographie NatiShoot"
+        img = f'data-img="{val}"' if kind == "img" else f'data-src="{val}" data-alt="{alt}"'
         cards.append(f"""    <article class="svc">
       <div class="l">
         <div class="top mono"><span>{p['n']} / {total}</span><span>{html.escape(p['sub'])}</span></div>
