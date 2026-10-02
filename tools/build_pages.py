@@ -43,7 +43,10 @@ PRESTATIONS = [
      "type": "Portrait / corporate", "from": "Dès 150 €", "cover": "portrait-43", "home_img": ("img", "po45"),
      "items": ["Portrait individuel", "Séance grossesse, couple ou famille", "Lumière studio (Godox, Neewer)",
                "Fonds noir, blanc, violet", "Retouche & colorimétrie", "Équipe, gestes métier, lieu et ambiance"],
-     "note": "Les séances boudoir & nu artistique sont présentées uniquement sur demande (galerie privée).",
+     "note": ("Location du studio non comprise, à la charge du client s’il souhaite une séance en studio. "
+              "Déplacement à domicile en Île-de-France pour les portraits individuels, grossesse et boudoir : "
+              "sans supplément en journée, 100\u00a0€ en soirée (à partir de 20\u00a0h). "
+              "Les séances boudoir & nu artistique sont présentées uniquement sur demande (galerie privée)."),
      "groups": [
          ("Portrait", [
              ("Portrait Essentiel", "45 min — 6 photos retouchées — galerie privée", "150 €", "", ""),
@@ -143,6 +146,7 @@ PRESTATIONS = [
              ("Interview courte", "1 personne — vidéo ≤ 90 s sous-titrée", "480 €", "", ""),
              ("3 déclinaisons verticales", "À partir du montage validé — ≤ 30 s chacune", "110 €", "", ""),
              ("Retouche avancée", "Détourage ou retouche localisée", "Dès 24 €", "photo", ""),
+             ("Déplacement à domicile — soirée", "Île-de-France — à partir de 20 h — portrait individuel, grossesse, boudoir", "100 €", "", ""),
          ]),
      ],
      "photos": [], "series": []},
