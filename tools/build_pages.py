@@ -33,9 +33,9 @@ LEAD_PRESTA = ("Je prends le temps de comprendre votre demande, je me déplace a
                "et je peux constituer une équipe avec des partenaires : vidéaste, make-up artists, "
                "créateurs de vêtements et d’accessoires. Formules et tarifs ci-dessous, ajustables sur devis selon votre projet.")
 
-# Tarifs 2026 (TTC, TVA 20 %) — source : NatiShoot_Tarifs_2026.md (mise à jour du 2 octobre 2026).
-# Formule : (nom, contenu, prix TTC, unité, repère)  unité : "" | "heure" | "mois" | "photo" ; repère : "" | "reco" | "tremplin"
-TARIFS_NOTE = ("Prix TTC (TVA 20 %). Formules Tremplin accordées sur demande, après un court échange sur le projet, "
+# Tarifs 2026 (prix nets, TVA non applicable, art. 293 B du CGI) — source : NatiShoot_Tarifs_2026.md.
+# Formule : (nom, contenu, prix net, unité, repère)  unité : "" | "heure" | "mois" | "photo" ; repère : "" | "reco" | "tremplin"
+TARIFS_NOTE = ("Prix nets, TVA non applicable (article 293 B du CGI). Formules Tremplin accordées sur demande, après un court échange sur le projet, "
                "dans la limite des places disponibles chaque mois.")
 
 PRESTATIONS = [
@@ -216,8 +216,8 @@ def page(title, desc, canonical, body):
 </main>
 <footer>
   <div class="bot">
-    <span>© 2026 NatiShoot Photography — Auteur, SIREN 531 577 955</span>
-    <span><a href="https://instagram.com/tfl.971" target="_blank" rel="noopener">Instagram</a> · <a href="https://photo-portal.shop/profiles/natishoot/" target="_blank" rel="noopener">Boutique tirages</a> · <a href="../mentions-legales.html">Mentions légales</a></span>
+    <span>© 2026 NatiShoot Photography — Patrick Rhino EI · SIRET 531 577 955 00036 · TVA non applicable, art. 293 B du CGI</span>
+    <span><a href="https://instagram.com/tfl.971" target="_blank" rel="noopener">Instagram</a> · <a href="https://photo-portal.shop/profiles/natishoot/" target="_blank" rel="noopener">Boutique tirages</a> · <a href="../mentions-legales.html">Mentions légales</a> · <a href="../cgv.html">CGV</a></span>
   </div>
 </footer>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Visionneuse">
@@ -315,7 +315,7 @@ def build_prestations():
         body = f"""<section class="head">
   <div><div class="eyebrow">Prestation {p['n']} / {total} — {p['sub']}</div><h1>{p['t']} <em>{p['em']}</em></h1></div>
   <div><p class="lead">{LEAD_PRESTA}</p>
-  <div class="meta"><div><b>{nb(p['from'])}</b><span class="mono">TTC</span></div></div>
+  <div class="meta"><div><b>{nb(p['from'])}</b><span class="mono">Prix net</span></div></div>
   <div class="cta"><a class="btn solid" href="{cta}">Demander un devis →</a>{link}</div></div>
 </section>
 <section class="detail">
@@ -331,7 +331,7 @@ def build_prestations():
 <section class="band"><p>{p['t']} <em>{p['em']}</em></p><a class="btn" href="{cta}">Demander un devis →</a></section>"""
         resume = p["items"][:3] or [f[0] for f in formulas(p)[:3]]
         out = page(f"{p['t']} {p['em']} — Prestation photo NatiShoot, Paris",
-                   f"{p['t']} {p['em']} par NatiShoot, photographe à Paris : {', '.join(resume).lower()}. {p['from']} TTC.",
+                   f"{p['t']} {p['em']} par NatiShoot, photographe à Paris : {', '.join(resume).lower()}. {p['from']}.",
                    f"prestations/{p['k']}.html", body)
         open(os.path.join(ROOT, "prestations", f"{p['k']}.html"), "w").write(out)
 
@@ -349,7 +349,7 @@ def build_home():
       <div class="l">
         <div class="top mono"><span>{p['n']} / {total}</span><span>{html.escape(p['sub'])}</span></div>
         <h3><a class="stretch" href="prestations/{p['k']}.html">{p['t']} <em>{html.escape(p['em'])}</em></a></h3>
-        <p class="price">{nb(p['from'])} <span class="mono">TTC</span></p>
+        <p class="price">{nb(p['from'])}</p>
         <ul>{lis}</ul>
         <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="{p['type']}">Demander un devis <span class="arr">→</span></a></div>
       </div>

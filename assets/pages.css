@@ -123,3 +123,10 @@ footer a:hover{color:var(--ink)}
 .legal p{color:#cfc8bd;margin-bottom:10px}
 .legal a{border-bottom:1px solid var(--line)}
 .legal .var{color:var(--acc)}
+.legal ul{list-style:none;margin:0 0 12px}
+.legal li{display:flex;gap:10px;color:#cfc8bd;padding:4px 0}
+.legal li::before{content:"→";color:var(--acc)}
+.legal table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:15px}
+.legal th,.legal td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);color:#cfc8bd}
+.legal th{font-weight:500;color:var(--ink)}
+@media (max-width:560px){.legal table,.legal tbody,.legal tr,.legal th,.legal td{display:block}.legal tr{padding:8px 0;border-bottom:1px solid var(--line)}.legal th,.legal td{border:0;padding:2px 0}}
