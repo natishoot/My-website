@@ -327,6 +327,24 @@ form .row{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
 .contact .side a.ig .ig-ico{flex:none;width:1.1em;height:1.1em;color:var(--acc)}
 .mailbox{text-align:center;margin-top:clamp(50px,6vw,90px)}
 .mailbox .fnote{max-width:34em;margin-left:auto;margin-right:auto}
+/* Fenêtre de demande de devis */
+.devis{width:calc(100vw - 24px);max-width:720px;max-height:calc(100dvh - 24px);margin:auto;padding:clamp(26px,4vw,48px);background:var(--bg2);color:var(--ink);border:1px solid var(--line);border-radius:22px;overflow:auto;overscroll-behavior:contain}
+.devis::backdrop{background:rgba(11,10,9,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.devis[open]{animation:devisIn .5s var(--ease)}
+@keyframes devisIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.devis h2{font:400 clamp(34px,4.6vw,64px)/.92 var(--disp);text-transform:uppercase;margin:12px 0 26px}
+.devis .eyebrow,.devis h2{margin-right:48px}
+.devis h2 em{color:var(--acc);font-size:.8em}
+.devis .row{display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+.devis .field select{cursor:pointer;padding-right:24px;background:linear-gradient(45deg,transparent 50%,var(--mute) 50%) calc(100% - 10px) 55%/6px 6px no-repeat,linear-gradient(-45deg,transparent 50%,var(--mute) 50%) calc(100% - 4px) 55%/6px 6px no-repeat}
+.devis .field input[type=date]{color-scheme:dark;min-height:44px}
+.devis .field.sel label{top:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.devis .submit{margin-top:6px}
+.devis-x{position:absolute;top:16px;right:18px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);color:var(--ink);font-size:15px;transition:border-color .3s,color .3s}
+.devis-x:hover{border-color:var(--acc);color:var(--acc)}
+.devis-ok p,.devis-ko p{color:#cfc8bd;margin-bottom:26px;max-width:32em}
+.devis .sending{opacity:.5;pointer-events:none}
+@media (max-width:640px){.devis .row{grid-template-columns:1fr}.devis{padding:24px 18px}.devis h2{font-size:32px}}
 
 /* footer */
 footer.site{padding:0 var(--pad) 24px;overflow:hidden}
@@ -446,7 +464,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
     <li><a href="#prestations"><span>Prestations</span><span>Prestations</span></a></li>
     <li><a href="#apropos"><span>À propos</span><span>À propos</span></a></li>
   </ul>
-  <a href="#contact" class="btn mag">Demander un devis <span class="arr">→</span></a>
+  <a href="#devis" class="btn mag" data-devis>Demander un devis <span class="arr">→</span></a>
   <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><i></i><i></i></button>
 </header>
 <nav class="mmenu" aria-label="Menu mobile">
@@ -508,7 +526,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <h3><a class="stretch" href="prestations/portrait-corporate.html">Portrait <em>&amp; corporate</em></a></h3>
         <p class="price">Dès 150 €</p>
         <ul><li>Portrait Essentiel — 150 €</li><li>Pack Découverte — 300 €</li><li>Portrait Signature — 450 €</li><li>Portrait professionnel — 250 €</li><li>Corporate demi-journée — 780 €</li><li>Corporate journée — 1 440 €</li></ul>
-        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Portrait / corporate">Demander un devis <span class="arr">→</span></a></div>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#devis" class="btn mag" data-type="Portrait / corporate">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-img="po45"></div>
     </article>
@@ -518,7 +536,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <h3><a class="stretch" href="prestations/evenements-mariages.html">Événements <em>&amp; mariages</em></a></h3>
         <p class="price">Dès 300 €</p>
         <ul><li>Événement Essentiel — 300 €</li><li>Événement demi-journée — 550 €</li><li>Événement journée — 950 €</li><li>Événement longue durée — 1 200 €</li><li>Mariage civil — 550 €</li><li>Mariage Essentiel — 1 690 €</li></ul>
-        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Événement / mariage">Demander un devis <span class="arr">→</span></a></div>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#devis" class="btn mag" data-type="Événement / mariage">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-src="images/carte-evenements.jpg" data-alt="Événements &amp; mariages — photographie NatiShoot"></div>
     </article>
@@ -528,7 +546,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <h3><a class="stretch" href="prestations/mode-concerts.html">Mode <em>&amp; concerts</em></a></h3>
         <p class="price">Dès 300 €</p>
         <ul><li>Défilé Essentiel — 300 €</li><li>Défilé Étendu — 550 €</li><li>Journée Mode — 950 €</li><li>Éditorial Signature — Dès 450 €</li><li>Concert Essentiel — 300 €</li><li>Concert Étendu — 550 €</li></ul>
-        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Mode / concert">Demander un devis <span class="arr">→</span></a></div>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#devis" class="btn mag" data-type="Mode / concert">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-src="images/carte-mode.jpg" data-alt="Mode &amp; concerts — photographie NatiShoot"></div>
     </article>
@@ -538,7 +556,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <h3><a class="stretch" href="prestations/video-captation.html">Vidéo <em>&amp; captation</em></a></h3>
         <p class="price">Dès 350 €</p>
         <ul><li>Session Création — 450 €</li><li>Demi-journée Contenu — 650 €</li><li>Tremplin Contenu — 280 €</li><li>Captation Angle Unique — 350 €</li><li>Captation Angle Unique + montage — 500 €</li><li>Captation Double Regard — 550 €</li></ul>
-        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Vidéo / captation">Demander un devis <span class="arr">→</span></a></div>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#devis" class="btn mag" data-type="Vidéo / captation">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-img="co6"></div>
     </article>
@@ -548,7 +566,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <h3><a class="stretch" href="prestations/photo-video.html">Photo <em>+ vidéo</em></a></h3>
         <p class="price">Dès 1 200 €</p>
         <ul><li>Visages Essentiel — 1 200 €</li><li>Visages Histoire — 2 400 €</li><li>Visages Signature — 3 600 €</li><li>Artist Content Day — 1 440 €</li><li>Événement Récit — 1 440 €</li><li>Mini-documentaire — Dès 3 600 €</li></ul>
-        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Photo + vidéo">Demander un devis <span class="arr">→</span></a></div>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#devis" class="btn mag" data-type="Photo + vidéo">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-img="co2"></div>
     </article>
@@ -558,7 +576,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
         <h3><a class="stretch" href="prestations/options.html">Options <em>à la carte</em></a></h3>
         <p class="price">Dès 24 €</p>
         <ul><li>Heure supplémentaire événement — 120 € / heure</li><li>Reel ajouté à une prestation — 120 €</li><li>Album photo — Dès 90 €</li><li>Interview courte — 480 €</li><li>3 déclinaisons verticales — 110 €</li><li>Retouche avancée — Dès 24 € / photo</li></ul>
-        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="Option">Demander un devis <span class="arr">→</span></a></div>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#devis" class="btn mag" data-type="Option">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" data-img="di12"></div>
     </article>
@@ -600,16 +618,53 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
   <h2 class="big" id="cbig" aria-label="Parlons de votre shooting"><span class="line-mask"><span>Parlons de</span></span><span class="line-mask"><span>votre <em>shooting</em></span></span></h2>
   <div class="grid2">
     <div class="side" data-fade>
-      <p>Cliquez sur « Demander un devis » pour m’envoyer un e-mail détaillé : type de séance, date, lieu, usage des images. Je reviens vers vous avec une proposition et un devis adaptés.</p>
+      <p>Cliquez sur « Demander un devis » et décrivez votre projet en quelques lignes : type de séance, date souhaitée, lieu, usage des images. Je reviens vers vous avec une proposition et un devis adaptés.</p>
       <a class="ig" href="https://instagram.com/tfl.971" target="_blank" rel="noopener" aria-label="Instagram @tfl.971"><svg class="ig-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>@tfl.971 <span class="arr">↗</span></a>
     </div>
   </div>
   <div class="mailbox" data-fade>
-    <a class="btn submit mag" id="mailto" href="mailto:natishoot.tipix@gmail.com?subject=Demande%20de%20devis%20%E2%80%94%20shooting">Demander un devis <span class="arr">→</span></a>
-    <p class="fnote">Le bouton ouvre votre messagerie avec un modèle à compléter. Vous pouvez aussi écrire directement à <a href="mailto:natishoot.tipix@gmail.com">natishoot.tipix@gmail.com</a>. Réponse personnelle de Natan.</p>
+    <a class="btn submit mag" href="#devis" data-devis>Demander un devis <span class="arr">→</span></a>
+    <p class="fnote">Vous préférez l’e-mail ? Écrivez directement à <a href="mailto:natishoot.tipix@gmail.com">natishoot.tipix@gmail.com</a>. Réponse personnelle de Natan.</p>
   </div>
 </section>
 </main>
+
+<dialog class="devis" id="devis" aria-labelledby="devis-t" data-lenis-prevent>
+  <button class="devis-x" type="button" aria-label="Fermer">✕</button>
+  <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="devis-form">
+    <input type="hidden" name="form-name" value="devis">
+    <p class="sr"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+    <div class="eyebrow">Demande de devis</div>
+    <h2 id="devis-t">Parlons de votre <em>projet</em></h2>
+    <div class="row">
+      <div class="field"><input id="d-nom" name="nom" required placeholder=" " autocomplete="name"><label for="d-nom">Nom *</label><span class="ln"></span></div>
+      <div class="field"><input id="d-mail" name="email" type="email" required placeholder=" " autocomplete="email"><label for="d-mail">E-mail *</label><span class="ln"></span></div>
+    </div>
+    <div class="row">
+      <div class="field sel"><select id="d-type" name="type" required><option value="" disabled selected>Choisir une prestation</option><option>Portrait individuel</option><option>Grossesse</option><option>Boudoir / nu artistique</option><option>Corporate (entreprise)</option><option>Événement</option><option>Mariage</option><option>Mode / défilé</option><option>Concert</option><option>Vidéo — contenu artiste</option><option>Vidéo — captation</option><option>Photo + vidéo</option><option>Autre / je ne sais pas encore</option></select><label for="d-type">Type de séance *</label><span class="ln"></span></div>
+      <div class="field sel"><input id="d-date" name="date" type="date"><label for="d-date">Date souhaitée du shooting ou du tournage</label><span class="ln"></span></div>
+    </div>
+    <div class="row">
+      <div class="field"><input id="d-lieu" name="lieu" placeholder=" "><label for="d-lieu">Lieu (ville, studio, domicile…)</label><span class="ln"></span></div>
+      <div class="field"><input id="d-tel" name="telephone" type="tel" placeholder=" " autocomplete="tel"><label for="d-tel">Téléphone (facultatif)</label><span class="ln"></span></div>
+    </div>
+    <div class="field"><textarea id="d-msg" name="message" required placeholder=" "></textarea><label for="d-msg">Votre projet * — usage des images, nombre de personnes, ambiance…</label><span class="ln"></span></div>
+    <button class="btn submit mag" type="submit">Envoyer ma demande <span class="arr">→</span></button>
+    <p class="fnote">Réponse personnelle de Natan. Vos informations servent uniquement à répondre à votre demande (<a href="mentions-legales.html">mentions légales</a>).</p>
+  </form>
+  <div class="devis-ok" hidden>
+    <div class="eyebrow">Demande envoyée</div>
+    <h2>Merci, <em>à très vite</em></h2>
+    <p>Votre demande est bien partie. Je reviens vers vous personnellement par e-mail avec une proposition adaptée.</p>
+    <button class="btn submit" type="button" data-close>Fermer <span class="arr">→</span></button>
+  </div>
+  <div class="devis-ko" hidden>
+    <div class="eyebrow">Envoi impossible</div>
+    <h2>Un souci <em>technique</em></h2>
+    <p>Votre demande n’a pas pu être envoyée. Vous pouvez l’envoyer par e-mail : votre messagerie s’ouvrira avec vos informations déjà remplies.</p>
+    <a class="btn submit" id="devis-mail" href="mailto:natishoot.tipix@gmail.com">Envoyer par e-mail <span class="arr">→</span></a>
+  </div>
+</dialog>
 
 <footer class="site">
   <div class="word" id="fword" aria-hidden="true">NATISHOOT</div>
@@ -786,16 +841,26 @@ addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key
   if(e.key==='Tab'){const f=$$('button',lb);const a=f.indexOf(document.activeElement);if(e.shiftKey&&a<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&a===f.length-1){e.preventDefault();f[0].focus()}}});
 let tx=0;lb.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)lbShow(lbIdx+(d<0?1:-1),d<0?1:-1)});
 
-// bouton devis : e-mail pré-rempli selon le type de shooting
-{const MAIL='natishoot.tipix@gmail.com',btn=$('#mailto');
-const setType=t=>{const sub='Demande de devis — '+(t?t:'shooting');
-const body=(t==='Boudoir'?'Demande d’accès à la galerie privée Boudoir / nu artistique.\n\n':'')+'Type de séance : '+(t&&t!=='Boudoir'?t:'')+'\nDate souhaitée : \nLieu : \nUsage des images : \n\nMon projet : \n\nNom : \nTéléphone (facultatif) : ';
-if(btn)btn.href='mailto:'+MAIL+'?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body)};
-setType(new URLSearchParams(location.search).get('type'));
-$$('[data-type]').forEach(a=>a.addEventListener('click',()=>setType(a.dataset.type)));}
-
-/* ============ BANDEAU : fond fumé dès qu'on quitte le haut de page ============ */
-{const nav=$('.nav');const upd=()=>nav.classList.toggle('solid',scrollY>80);addEventListener('scroll',upd,{passive:true});upd();}
+// fenêtre de demande de devis (formulaire Netlify, envoi sans quitter la page)
+{const dlg=$('#devis'),form=$('#devis-form'),sel=$('#d-type'),MAIL='natishoot.tipix@gmail.com';
+const MAP={'Portrait / corporate':'Portrait individuel','Événement / mariage':'Événement','Mode / concert':'Mode / défilé','Vidéo / captation':'Vidéo — captation','Photo + vidéo':'Photo + vidéo','Option':'Autre / je ne sais pas encore','Boudoir':'Boudoir / nu artistique','Portrait':'Portrait individuel','Grossesse':'Grossesse','Événement':'Événement','Mode':'Mode / défilé','Vidéo / Live':'Vidéo — captation'};
+const show=w=>{form.hidden=w!=='form';$('.devis-ok').hidden=w!=='ok';$('.devis-ko').hidden=w!=='ko'};
+const open=t=>{show('form');const v=MAP[t]||t;if(v&&[...sel.options].some(o=>o.text===v))sel.value=v;
+  if(t==='Boudoir'){const m=$('#d-msg');if(!m.value)m.value='Demande d’accès à la galerie privée Boudoir / nu artistique.'}
+  window.lenis&&lenis.stop();dlg.showModal()};
+const close=()=>dlg.close();
+dlg.addEventListener('close',()=>{window.lenis&&lenis.start()});
+dlg.addEventListener('click',e=>{if(e.target===dlg||e.target.closest('.devis-x,[data-close]'))close()});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-devis],[data-type]');if(!a||dlg.contains(a))return;e.preventDefault();open(a.dataset.type)});
+form.addEventListener('submit',async e=>{e.preventDefault();form.classList.add('sending');const fd=new FormData(form);
+  try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()});
+    if(!r.ok)throw 0;form.reset();show('ok')}
+  catch(_){const g=k=>fd.get(k)||'';const body='Type de séance : '+g('type')+'\nDate souhaitée : '+g('date')+'\nLieu : '+g('lieu')+'\n\n'+g('message')+'\n\nNom : '+g('nom')+'\nE-mail : '+g('email')+'\nTéléphone : '+g('telephone');
+    $('#devis-mail').href='mailto:'+MAIL+'?subject='+encodeURIComponent('Demande de devis — '+(g('type')||'shooting'))+'&body='+encodeURIComponent(body);show('ko')}
+  finally{form.classList.remove('sending')}});
+// arrivée depuis une autre page : index.html?type=…#devis
+const qt=new URLSearchParams(location.search).get('type');
+if(location.hash==='#devis'||qt)setTimeout(()=>{const c=$('#contact');c&&c.scrollIntoView();open(qt)},document.documentElement.classList.contains('rm')?600:3600);}
 
 /* ============ MOBILE MENU ============ */
 const burger=$('.burger'),mm=$('.mmenu');let mOpen=false;
@@ -810,7 +875,7 @@ function initMotion(){
   gsap.registerPlugin(ScrollTrigger);
   // smooth scroll
   if(!isTouch&&window.Lenis){window.lenis=new Lenis({duration:1.15,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
-    $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h.length<2&&h!=='#top')return;const t=h==='#top'?0:$(h);if(t===null)return;e.preventDefault();lenis.scrollTo(t,{duration:1.6})}))}
+    $$('a[href^="#"]:not([data-devis]):not([data-type])').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h.length<2&&h!=='#top')return;const t=h==='#top'?0:$(h);if(t===null)return;e.preventDefault();lenis.scrollTo(t,{duration:1.6})}))}
 
   // progress bar
   gsap.to('.progress',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});

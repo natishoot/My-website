@@ -209,7 +209,7 @@ def page(title, desc, canonical, body):
 <header class="nav">
   <a class="logo" href="../index.html">NATISHOOT <small>photography</small></a>
   <a class="back" href="../index.html#series">← Retour à l’accueil</a>
-  <a class="btn" href="../index.html#contact">Demander un devis →</a>
+  <a class="btn" href="../index.html#devis">Demander un devis →</a>
 </header>
 <main>
 {body}
@@ -245,14 +245,14 @@ def build_series():
   <div><div class="eyebrow">Série</div><h1>{s['t']} <em>en images</em></h1></div>
   <div><p class="lead">{s['d']}. Cliquez sur une photo pour l’afficher en grand, format d’origine.</p>
   <div class="meta"><div><b>{total}</b><span class="mono">photos</span></div></div>
-  <div class="cta"><a class="btn solid" href="../index.html#contact">Demander un devis →</a><a class="btn" href="{PORTFOLIO}{s['parts'][0][2]}" target="_blank" rel="noopener">Portfolio Adobe ↗</a></div></div>
+  <div class="cta"><a class="btn solid" href="../index.html#devis">Demander un devis →</a><a class="btn" href="{PORTFOLIO}{s['parts'][0][2]}" target="_blank" rel="noopener">Portfolio Adobe ↗</a></div></div>
 </section>"""]
         for label, pics, _ in parts:
             if len(parts) > 1:
                 body.append(f'<div class="sub"><h2>{label}</h2><span class="mono">{len(pics)} photos</span></div>')
             body.append('<div class="grid">' + "".join(tile(n, w, h, f"{label} — photographie NatiShoot") for n, w, h in pics) + "</div>")
         body.append(f'<section class="others"><div class="eyebrow">Autres séries</div><h2>Continuer la visite</h2><div class="chips">{series_chips(s["k"])}</div></section>')
-        body.append('<section class="band"><p>Un projet <em>en tête ?</em></p><a class="btn" href="../index.html#contact">Parlons de votre shooting →</a></section>')
+        body.append('<section class="band"><p>Un projet <em>en tête ?</em></p><a class="btn" href="../index.html#devis">Parlons de votre shooting →</a></section>')
         out = page(f"{s['t']} — Série photo NatiShoot, photographe à Paris",
                    f"Série {s['t'].lower()} de NatiShoot, photographe à Paris : {s['d'].lower()}.",
                    f"series/{s['k']}.html", "\n".join(body))
@@ -302,7 +302,7 @@ def build_prestations():
         inclus = f"<h2>Ce qui est inclus</h2>\n    <ul>{items}</ul>" if items else ""
         note = f'<p class="note">{p["note"]}</p>' if p.get("note") else ""
         link = f'<a class="btn" href="{p["link"][1]}" target="_blank" rel="noopener">{p["link"][0]} ↗</a>' if p.get("link") else ""
-        cta = f'../index.html?type={p["type"].replace(" ", "%20")}#contact'
+        cta = f'../index.html?type={p["type"].replace(" ", "%20")}#devis'
         pics = []
         for slug, n in p["photos"]:
             pics += photos(slug)[:n]
@@ -351,7 +351,7 @@ def build_home():
         <h3><a class="stretch" href="prestations/{p['k']}.html">{p['t']} <em>{html.escape(p['em'])}</em></a></h3>
         <p class="price">{nb(p['from'])}</p>
         <ul>{lis}</ul>
-        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#contact" class="btn mag" data-type="{p['type']}">Demander un devis <span class="arr">→</span></a></div>
+        <div class="foot"><span class="more-link">Toutes les formules <span class="arr">→</span></span><a href="#devis" class="btn mag" data-type="{p['type']}">Demander un devis <span class="arr">→</span></a></div>
       </div>
       <div class="r" {img}></div>
     </article>""")
