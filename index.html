@@ -286,9 +286,15 @@ section{position:relative}
 .about .portrait{position:relative;aspect-ratio:4/5;overflow:hidden}
 .about .portrait img{width:100%;height:120%;object-fit:cover}
 .about .portrait .stamp{position:absolute;right:-1px;bottom:-1px;background:var(--bg);padding:14px 18px;z-index:2}
-.about .pics{position:relative}
-.about .duo{width:58%;margin:-22% 0 0 auto;position:relative;z-index:3;border:8px solid var(--bg);background:var(--bg)}
-.about .duo img{display:block;width:100%;height:auto}
+.about .txt .more{display:inline-flex;gap:8px;align-items:center;margin-left:6px;font-weight:500;color:var(--ink);border-bottom:1px solid var(--acc)}
+.about .txt .more:hover .arr{transform:translateX(4px)}
+.devis.natan{max-width:1040px}
+.natan-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(22px,3.5vw,48px);align-items:start}
+.natan-pics{display:grid;gap:14px}
+.natan-pics img{display:block;width:100%;height:auto;border-radius:12px}
+.natan-txt p{color:#cfc8bd;font-size:16px;margin-bottom:14px}
+.natan-txt .cta-line{color:var(--ink);font:italic 400 1.25em/1.2 var(--serif);white-space:nowrap}
+@media (max-width:760px){.natan-grid{grid-template-columns:1fr}.natan-pics{grid-template-columns:1fr 1fr;align-items:start}}
 .about .txt .cta-line{color:var(--ink);font:italic 400 1.25em/1.2 var(--serif);white-space:nowrap}
 .about h2{font:400 clamp(30px,3.6vw,62px)/.92 var(--disp);text-transform:uppercase;margin:18px 0 30px}
 .about h2 em{color:var(--acc)}
@@ -600,17 +606,12 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 
 
 <section class="about" id="apropos" aria-label="À propos">
-  <div class="pics">
-    <div class="portrait" data-clip><div id="aimg" style="position:absolute;inset:0"></div><div class="stamp mono">Natan — NatiShoot</div></div>
-    <figure class="duo" data-fade><img src="images/natan-portrait-900.jpg" width="900" height="720" alt="Natan, photographe de NatiShoot Photography, portrait en studio" loading="lazy"></figure>
-  </div>
+  <div class="portrait" data-clip><div id="aimg" style="position:absolute;inset:0"></div><div class="stamp mono">Portrait — NatiShoot</div></div>
   <div class="txt">
     <div class="eyebrow">05 — À propos</div>
     <h2><span class="line-mask"><span>Amoureux des</span></span><span class="line-mask"><span><em>couleurs</em> &amp; de la vie</span></span></h2>
     <p data-fade>Mon surnom, c’est Natan. Photographe autodidacte depuis 2019 et vidéaste depuis 2026, je suis amoureux des couleurs, des fleurs, des paysages et des couchers de soleil, et plus encore des regards.</p>
-    <p data-fade>Je cherche l’émotion d’un visage, l’histoire qu’il raconte, la seconde où tout se dit. Le portrait est mon terrain de prédilection ; la mode, l’événement, le concert, le documentaire et la photographie artistique nourrissent mon regard.</p>
-    <p data-fade>J’apprends chaque jour. Pratiquer, chercher, essayer : c’est ainsi que se forge une signature. Merci à vous qui m’avez fait confiance, vous faites partie de cette histoire.</p>
-    <p data-fade>Pour votre projet, je prends le temps de vous écouter. Je me déplace avec mon matériel complet et je réunis si besoin une équipe : make-up artists, créateurs de vêtements et d’accessoires. <strong class="cta-line">Racontons votre histoire.</strong></p>
+    <p data-fade>Pour votre projet, je prends le temps de vous écouter. Je me déplace avec mon matériel complet et je réunis si besoin une équipe : make-up artists, créateurs de vêtements et d’accessoires. <strong class="cta-line">Racontons votre histoire.</strong> <a href="#natan" class="more" data-natan>Lire la suite <span class="arr">→</span></a></p>
     <div class="stats" data-fade>
       <div><b data-count="10">0</b><span>univers photo</span></div>
       <div><b data-count="230" data-suffix="+">0</b><span>images en ligne</span></div>
@@ -644,6 +645,24 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 </section>
 </main>
 
+<dialog class="devis natan" id="natan" aria-labelledby="natan-t" data-lenis-prevent>
+  <button class="devis-x" type="button" aria-label="Fermer">✕</button>
+  <div class="natan-grid">
+    <div class="natan-pics">
+      <img src="images/natan-appareil-900.jpg" width="720" height="900" alt="Natan, photographe de NatiShoot Photography, appareil photo en main" loading="lazy">
+      <img src="images/natan-portrait-900.jpg" width="900" height="720" alt="Natan, photographe de NatiShoot Photography, portrait en studio" loading="lazy">
+    </div>
+    <div class="natan-txt">
+      <div class="eyebrow">À propos</div>
+      <h2 id="natan-t">Amoureux des <em>couleurs</em> &amp; de la vie</h2>
+      <p>Mon surnom, c’est Natan. Photographe autodidacte depuis 2019 et vidéaste depuis 2026, je suis amoureux des couleurs, des fleurs, des paysages et des couchers de soleil, et plus encore des regards.</p>
+      <p>Je cherche l’émotion d’un visage, l’histoire qu’il raconte, la seconde où tout se dit. Le portrait est mon terrain de prédilection ; la mode, l’événement, le concert, le documentaire et la photographie artistique nourrissent mon regard.</p>
+      <p>J’apprends chaque jour. Pratiquer, chercher, essayer : c’est ainsi que se forge une signature. Merci à vous qui m’avez fait confiance, vous faites partie de cette histoire.</p>
+      <p>Pour votre projet, je prends le temps de vous écouter. Je me déplace avec mon matériel complet et je réunis si besoin une équipe : make-up artists, créateurs de vêtements et d’accessoires. <strong class="cta-line">Racontons votre histoire.</strong></p>
+      <a href="#devis" class="btn submit mag" data-devis>Demander un devis <span class="arr">→</span></a>
+    </div>
+  </div>
+</dialog>
 <dialog class="devis" id="devis" aria-labelledby="devis-t" data-lenis-prevent>
   <button class="devis-x" type="button" aria-label="Fermer">✕</button>
   <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="devis-form">
@@ -828,7 +847,7 @@ $('#htrack').innerHTML=`<div class="intro"><div class="eyebrow">02 — Séries</
 // service images
 $$('.svc .r').forEach(el=>{const id=el.dataset.img;el.innerHTML=id?`<img src="${U(id,1200)}" alt="${ALT(id)}" loading="lazy">`:`<img src="${el.dataset.src}" alt="${el.dataset.alt||'Photographie NatiShoot'}" loading="lazy">`});
 $('#qimg').innerHTML=`<img src="${U('po58',1920)}" alt="" loading="lazy">`;
-$('#aimg').innerHTML=`<img src="images/natan-appareil.jpg" alt="Natan, photographe de NatiShoot Photography, appareil photo en main" loading="lazy" style="width:100%;height:120%;object-fit:cover">`;
+$('#aimg').innerHTML=`<img src="${U('po44',1200)}" alt="Portrait réalisé par NatiShoot" loading="lazy" style="width:100%;height:120%;object-fit:cover">`;
 
 /* ============ HELPERS ============ */
 function splitChars(el){const t=el.textContent;el.innerHTML=t.split('').map(c=>c===' '?' ':`<span class="ch">${c}</span>`).join('');return $$('.ch',el)}
@@ -855,6 +874,11 @@ $('#lbx').onclick=lbClose;$$('.lb .prev').forEach(b=>b.onclick=()=>lbShow(lbIdx-
 addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lbClose();if(e.key==='ArrowRight')lbShow(lbIdx+1,1);if(e.key==='ArrowLeft')lbShow(lbIdx-1,-1);
   if(e.key==='Tab'){const f=$$('button',lb);const a=f.indexOf(document.activeElement);if(e.shiftKey&&a<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&a===f.length-1){e.preventDefault();f[0].focus()}}});
 let tx=0;lb.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)lbShow(lbIdx+(d<0?1:-1),d<0?1:-1)});
+
+// fenêtre « À propos » (texte long + photos de Natan)
+{const d=$('#natan');document.addEventListener('click',e=>{if(e.target.closest('[data-natan]')){e.preventDefault();window.lenis&&lenis.stop();d.showModal()}});
+d.addEventListener('click',e=>{if(e.target===d||e.target.closest('.devis-x'))d.close();if(e.target.closest('[data-devis]'))d.close()});
+d.addEventListener('close',()=>{if(!$('#devis').open)window.lenis&&lenis.start()});}
 
 // fenêtre de demande de devis (formulaire Netlify, envoi sans quitter la page)
 {const dlg=$('#devis'),form=$('#devis-form'),sel=$('#d-type'),MAIL='natishoot.tipix@gmail.com';
@@ -899,7 +923,7 @@ function initMotion(){
   gsap.registerPlugin(ScrollTrigger);
   // smooth scroll
   if(!isTouch&&window.Lenis){window.lenis=new Lenis({duration:1.15,smoothWheel:true});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
-    $$('a[href^="#"]:not([data-devis]):not([data-type])').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h.length<2&&h!=='#top')return;const t=h==='#top'?0:$(h);if(t===null)return;e.preventDefault();lenis.scrollTo(t,{duration:1.6})}))}
+    $$('a[href^="#"]:not([data-devis]):not([data-type]):not([data-natan])').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href');if(h.length<2&&h!=='#top')return;const t=h==='#top'?0:$(h);if(t===null)return;e.preventDefault();lenis.scrollTo(t,{duration:1.6})}))}
 
   // progress bar
   gsap.to('.progress',{scaleX:1,ease:'none',scrollTrigger:{start:0,end:'max',scrub:.3}});
