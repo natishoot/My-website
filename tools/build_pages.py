@@ -59,7 +59,7 @@ PRESTATIONS = [
      ],
      "photos": [("portrait", 12), ("grossesse", 6)], "series": ["portrait", "grossesse"]},
     {"k": "evenements-mariages", "n": "02", "t": "Événements", "em": "& mariages", "sub": "Fêtes, galas, cérémonies",
-     "type": "Événement / mariage", "from": "Dès 300 €", "cover": "sport-01", "home_img": ("src", "images/carte-evenements.jpg"),
+     "type": "Événement / mariage", "from": "Dès 300 €", "cover": "portrait-32", "home_img": ("src", "images/portrait-32.jpg"),
      "items": ["Galas, compétitions sportives", "Conventions & cosplay", "Mariages & anniversaires",
                "Reportage documentaire", "Galerie privée en ligne", "Déplacements en France et à l’étranger, chiffrés au devis"],
      "groups": [
@@ -114,7 +114,7 @@ PRESTATIONS = [
      "link": ("Voir les vidéos NatiShoot", PORTFOLIO + "videos-natishoot"),
      "photos": [("createurs-collabs", 6), ("portrait", 6)], "series": ["createurs", "portrait"]},
     {"k": "artistes", "n": "05", "t": "Artistes", "em": "& musique", "sub": "Concert, contenu, captation", "artiste": True,
-     "type": "Artiste", "from": "Sur devis", "cover": "concerts-12", "home_img": ("src", "images/concerts-29.jpg"),
+     "type": "Artiste", "from": "Sur devis", "cover": "concerts-07", "home_img": ("src", "images/concerts-07.jpg"),
      "items": ["Photo de concert : scène, ambiance, coulisses", "Vidéos verticales pour vos réseaux", "Captation 1 ou 2 angles",
                "Montage & étalonnage", "Multicam sur devis", "Journée de contenu artiste"],
      "groups": [
