@@ -15,10 +15,10 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Anciennes pages prestations (réorganisation des tarifs 2026)
+# Anciennes pages prestations (réorganisations des tarifs 2026)
 [[redirects]]
   from = "/prestations/portrait-mode.html"
-  to = "/prestations/portrait-corporate.html"
+  to = "/prestations/portrait.html"
   status = 301
 
 [[redirects]]
@@ -28,10 +28,30 @@
 
 [[redirects]]
   from = "/prestations/grossesse-intime.html"
-  to = "/prestations/portrait-corporate.html"
+  to = "/prestations/portrait.html"
   status = 301
 
 [[redirects]]
   from = "/prestations/video-live.html"
-  to = "/prestations/video-captation.html"
+  to = "/prestations/artistes.html"
+  status = 301
+
+[[redirects]]
+  from = "/prestations/portrait-corporate.html"
+  to = "/prestations/portrait.html"
+  status = 301
+
+[[redirects]]
+  from = "/prestations/mode-concerts.html"
+  to = "/prestations/mode.html"
+  status = 301
+
+[[redirects]]
+  from = "/prestations/video-captation.html"
+  to = "/prestations/artistes.html"
+  status = 301
+
+[[redirects]]
+  from = "/prestations/photo-video.html"
+  to = "/prestations/corporate-photo-video.html"
   status = 301

@@ -130,3 +130,6 @@ footer a:hover{color:var(--ink)}
 .legal th,.legal td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);color:#cfc8bd}
 .legal th{font-weight:500;color:var(--ink)}
 @media (max-width:560px){.legal table,.legal tbody,.legal tr,.legal th,.legal td{display:block}.legal tr{padding:8px 0;border-bottom:1px solid var(--line)}.legal th,.legal td{border:0;padding:2px 0}}
+/* Mentions tarif solidaire / artistes */
+.callout{margin:6px 0 28px;padding:20px 22px;border:1px solid var(--line);border-left:2px solid var(--acc);border-radius:14px;background:var(--bg2)}
+.callout p{font:italic 400 20px/1.3 var(--serif);margin-bottom:14px}
