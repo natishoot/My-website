@@ -41,12 +41,12 @@ ARTISTE = "Vous êtes un artiste indépendant ou un artiste signé en label ? De
 # Tarifs : NatiShoot_Brief_Reference_2026-10-08.md (prix nets). Formule : (nom, contenu, prix, unité, repère)
 # prix None = prestation « artistes » : aucun prix sur le site (« Sur devis »). Formules Élan : jamais affichées.
 PRESTATIONS = [
-    {"k": "portrait", "n": "01", "t": "Portrait", "em": "& grossesse", "sub": "Studio, extérieur, domicile",
+    {"k": "portrait", "n": "01", "t": "Portrait", "em": "& grossesse", "sub": "Portrait, grossesse, boudoir",
      "type": "Portrait", "from": "Dès 150 €", "cover": "portrait-43", "home_img": ("img", "po45"),
      "items": ["Portrait individuel", "Séance grossesse", "Séance boudoir", "Lumière studio (Godox, Neewer)",
                "Fonds noir, blanc, violet", "Retouche & colorimétrie", "Déplacement à domicile en Île-de-France"],
      "note": ("Location du studio à la charge du client s’il souhaite une séance en studio. "
-              "Déplacement à domicile en Île-de-France (portrait individuel, grossesse) sans supplément en journée. "
+              "Déplacement à domicile en Île-de-France (portrait individuel, grossesse, boudoir) sans supplément en journée. "
               "Les séances boudoir sont au même prix que les portraits ; la galerie boudoir & nu artistique est présentée uniquement sur demande."),
      "groups": [
          ("Portrait", [
@@ -54,7 +54,7 @@ PRESTATIONS = [
              ("Pack Découverte", "2 h — 15 photos — accompagnement poses et sélection", "300 €", "", ""),
              ("Portrait Signature", "2 h 30 — 25 photos — direction artistique", "450 €", "", "reco"),
              ("Portrait professionnel", "8 portraits retouchés pour site et réseaux", "250 €", "", ""),
-             ("Déplacement à domicile — soirée", "Île-de-France, à partir de 20 h — portrait individuel, grossesse", "100 €", "", ""),
+             ("Déplacement à domicile — soirée", "Île-de-France, à partir de 20 h — portrait individuel, grossesse, boudoir", "100 €", "", ""),
          ]),
      ],
      "photos": [("portrait", 12), ("grossesse", 6)], "series": ["portrait", "grossesse"]},
