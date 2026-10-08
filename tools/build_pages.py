@@ -315,6 +315,8 @@ def build_prestations():
         note = f'<p class="note">{p["note"]}</p>' if p.get("note") else ""
         link = f'<a class="btn" href="{p["link"][1]}" target="_blank" rel="noopener">{p["link"][0]} ↗</a>' if p.get("link") else ""
         cta = f'../index.html?type={p["type"].replace(" ", "%20")}#devis'
+        cw, ch = jpeg_size(os.path.join(ROOT, "images", p["cover"] + ".jpg"))
+        cover_cls = " wide" if cw > ch else ""  # photo horizontale : affichée en entier, sans recadrage
         pics = []
         for slug, n in p["photos"]:
             pics += [x for x in photos(slug) if x[0] not in p.get("skip", [])][:n]
@@ -332,7 +334,7 @@ def build_prestations():
   <div class="cta"><a class="btn solid" href="{cta}">Demander un devis →</a>{link}</div></div>
 </section>
 <section class="detail">
-  <div class="cover"><img src="../images/{p['cover']}.jpg" alt="{p['t']} {p['em']} — NatiShoot"></div>
+  <div class="cover{cover_cls}"><img src="../images/{p['cover']}.jpg" width="{cw}" height="{ch}" alt="{p['t']} {p['em']} — NatiShoot"></div>
   <div>
     {inclus}
     {note}
