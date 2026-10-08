@@ -15,6 +15,9 @@ import struct
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORTFOLIO = "https://natishoot.myportfolio.com/"
+# Version des fichiers communs (évite qu'un navigateur garde une ancienne mise en forme en cache)
+import hashlib
+ASSET_V = hashlib.md5(b"".join(open(os.path.join(ROOT, "assets", f), "rb").read() for f in ("pages.css", "pages.js"))).hexdigest()[:8]
 
 # Séries affichées sur l'accueil (même ordre et mêmes clés que SERIES dans index.html)
 SERIES = [
@@ -205,7 +208,7 @@ def page(title, desc, canonical, body):
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="stylesheet" href="../assets/pages.css">
+<link rel="stylesheet" href="../assets/pages.css?v={ASSET_V}">
 </head>
 <body>
 <header class="nav">
@@ -227,7 +230,7 @@ def page(title, desc, canonical, body):
   <div class="stage"><img id="lbi" alt=""></div>
   <div class="foot"><span class="mono" id="lbt"></span><div class="arrows"><button id="lbp" aria-label="Précédente">←</button><button id="lbn" aria-label="Suivante">→</button></div></div>
 </div>
-<script src="../assets/pages.js" defer></script>
+<script src="../assets/pages.js?v={ASSET_V}" defer></script>
 </body>
 </html>
 """
@@ -391,8 +394,18 @@ def build_home():
     open(t, "w").write(toml.rstrip() + "\n")
 
 
+def stamp_static():
+    """Met à jour la version des fichiers communs dans les pages écrites à la main."""
+    for name in ("mentions-legales.html", "cgv.html"):
+        path = os.path.join(ROOT, name)
+        t = open(path).read()
+        t = re.sub(r'assets/pages\.(css|js)(\?v=\w+)?"', lambda m: f'assets/pages.{m.group(1)}?v={ASSET_V}"', t)
+        open(path, "w").write(t)
+
+
 if __name__ == "__main__":
     build_series()
     build_prestations()
     build_home()
+    stamp_static()
     print("Pages générées :", len(SERIES), "séries,", len(PRESTATIONS), "prestations")
