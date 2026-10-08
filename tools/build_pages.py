@@ -43,10 +43,11 @@ ARTISTE = "Vous êtes un artiste indépendant ou un artiste signé en label ? De
 PRESTATIONS = [
     {"k": "portrait", "n": "01", "t": "Portrait", "em": "& grossesse", "sub": "Studio, extérieur, domicile",
      "type": "Portrait", "from": "Dès 150 €", "cover": "portrait-43", "home_img": ("img", "po45"),
-     "items": ["Portrait individuel", "Séance grossesse", "Lumière studio (Godox, Neewer)",
+     "items": ["Portrait individuel", "Séance grossesse", "Séance boudoir", "Lumière studio (Godox, Neewer)",
                "Fonds noir, blanc, violet", "Retouche & colorimétrie", "Déplacement à domicile en Île-de-France"],
      "note": ("Location du studio à la charge du client s’il souhaite une séance en studio. "
-              "Déplacement à domicile en Île-de-France (portrait individuel, grossesse) sans supplément en journée."),
+              "Déplacement à domicile en Île-de-France (portrait individuel, grossesse) sans supplément en journée. "
+              "Les séances boudoir sont au même prix que les portraits ; la galerie boudoir & nu artistique est présentée uniquement sur demande."),
      "groups": [
          ("Portrait", [
              ("Portrait Essentiel", "45 min — 6 photos retouchées — galerie privée", "150 €", "", ""),
