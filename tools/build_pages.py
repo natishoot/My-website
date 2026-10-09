@@ -94,7 +94,7 @@ PRESTATIONS = [
      ],
      "photos": [("defile", 8), ("createurs-collabs", 6)], "series": ["defile", "createurs"]},
     {"k": "corporate-photo-video", "n": "04", "t": "Corporate", "em": "& photo + vidéo", "sub": "Entreprises, organisations — tarif pro",
-     "type": "Corporate / photo + vidéo", "from": "Dès 650 €", "cover": "divers-05", "home_img": ("src", "images/divers-05.jpg"),
+     "type": "Corporate / photo + vidéo", "from": "Dès 650 €", "cover": "carte-corporate", "home_img": ("src", "images/carte-corporate.jpg"),
      "items": ["Équipe, gestes métier, lieu et ambiance", "Banque d’images cohérente", "Portraits et interviews préparées",
                "Films courts et formats verticaux", "Contenu régulier mensuel"],
      "note": ("Tarif pro : cadrage éditorial, interviews préparées et droits d’exploitation pour la communication de l’organisation. "
