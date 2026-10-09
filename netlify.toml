@@ -1,7 +1,7 @@
 [build]
   publish = "."
 
-# Site en construction : noindex sur toutes les pages (retiré au lancement).
+# Ancienne préproduction Netlify : toujours en noindex (le vrai site est https://natishoot.fr, chez o2switch).
 # robots.txt reste ouvert pour que Google puisse lire ce noindex et le fichier de validation Search Console.
 [[headers]]
   for = "/*"

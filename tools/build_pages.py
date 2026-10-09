@@ -362,6 +362,7 @@ HTACCESS = """# Hébergement o2switch (Apache). Fichier généré par tools/buil
 
 # Toujours https://natishoot.fr (sans www)
 RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/\.well-known/
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\\. [NC]
 RewriteRule ^ https://natishoot.fr%{REQUEST_URI} [L,R=301]
