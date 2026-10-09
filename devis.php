@@ -5,8 +5,8 @@
 header('Content-Type: application/json; charset=utf-8');
 header('X-Robots-Tag: noindex');
 
-const DESTINATAIRE = 'natishoot.tipix@gmail.com';
-const EXPEDITEUR = 'noreply@natishoot.fr';
+const DESTINATAIRE = 'contact@natishoot.fr';
+const EXPEDITEUR = 'contact@natishoot.fr';
 
 function reponse($ok, $code = 200, $erreur = '') {
     http_response_code($code);

@@ -377,6 +377,9 @@ RedirectMatch 404 ^/(tools|\\.git)(/|$)
 <Files "robots.txt">
   Require all granted
 </Files>
+<Files "galerie-lib.php">
+  Require all denied
+</Files>
 
 # Sécurité et cache
 <IfModule mod_headers.c>

@@ -357,6 +357,7 @@ form .row{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
 .devis-ok p,.devis-ko p{color:#cfc8bd;margin-bottom:26px;max-width:32em}
 .devis .sending{opacity:.5;pointer-events:none}
 .devis.acces [data-full]{display:none}
+.devis .only-acces{display:none}.devis.acces .only-acces{display:block;margin:0 0 18px}
 @media (max-width:640px){.devis .row{grid-template-columns:1fr}.devis{padding:24px 18px}.devis h2{font-size:32px}}
 
 /* footer */
@@ -640,7 +641,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
   </div>
   <div class="mailbox" data-fade>
     <a class="btn submit mag" href="#devis" data-devis>Demander un devis <span class="arr">→</span></a>
-    <p class="fnote">Vous préférez l’e-mail ? Écrivez directement à <a href="mailto:natishoot.tipix@gmail.com">natishoot.tipix@gmail.com</a>. Réponse personnelle de Natan.</p>
+    <p class="fnote">Vous préférez l’e-mail ? Écrivez directement à <a href="mailto:contact@natishoot.fr">contact@natishoot.fr</a>. Réponse personnelle de Natan.</p>
   </div>
 </section>
 </main>
@@ -683,6 +684,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
       <div class="field"><input id="d-tel" name="telephone" type="tel" placeholder=" " autocomplete="tel"><label for="d-tel">Téléphone (facultatif)</label><span class="ln"></span></div>
     </div>
     <div class="field"><textarea id="d-msg" name="message" required placeholder=" "></textarea><label for="d-msg" data-l-full="Votre projet * — usage des images, nombre de personnes, ambiance…" data-l-acces="Demande d’accès à la galerie *">Votre projet * — usage des images, nombre de personnes, ambiance…</label><span class="ln"></span></div>
+    <p class="only-acces fnote">Vous avez déjà un code ? <a href="galerie.php">Ouvrir la galerie privée →</a></p>
     <button class="btn submit mag" type="submit" id="devis-go">Envoyer ma demande <span class="arr">→</span></button>
     <p class="fnote">Réponse personnelle de Natan. Vos informations servent uniquement à répondre à votre demande (<a href="mentions-legales.html">mentions légales</a>).</p>
   </form>
@@ -696,7 +698,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
     <div class="eyebrow">Envoi impossible</div>
     <h2>Un souci <em>technique</em></h2>
     <p>Votre demande n’a pas pu être envoyée. Vous pouvez l’envoyer par e-mail : votre messagerie s’ouvrira avec vos informations déjà remplies.</p>
-    <a class="btn submit" id="devis-mail" href="mailto:natishoot.tipix@gmail.com">Envoyer par e-mail <span class="arr">→</span></a>
+    <a class="btn submit" id="devis-mail" href="mailto:contact@natishoot.fr">Envoyer par e-mail <span class="arr">→</span></a>
   </div>
 </dialog>
 
@@ -881,7 +883,7 @@ d.addEventListener('click',e=>{if(e.target===d||e.target.closest('.devis-x'))d.c
 d.addEventListener('close',()=>{if(!$('#devis').open)window.lenis&&lenis.start()});}
 
 // fenêtre de demande de devis (envoi par devis.php sur o2switch, sans quitter la page)
-{const dlg=$('#devis'),form=$('#devis-form'),sel=$('#d-type'),MAIL='natishoot.tipix@gmail.com';
+{const dlg=$('#devis'),form=$('#devis-form'),sel=$('#d-type'),MAIL='contact@natishoot.fr';
 const MAP={'Portrait / corporate':'Portrait individuel','Corporate / photo + vidéo':'Corporate (entreprise)','Événement / mariage':'Événement','Mode / concert':'Mode / défilé','Vidéo / captation':'Vidéo — captation','Photo + vidéo':'Photo + vidéo','Option':'Autre / je ne sais pas encore','Boudoir':'Boudoir / nu artistique','Portrait':'Portrait individuel','Grossesse':'Grossesse','Événement':'Événement','Mode':'Mode / défilé','Vidéo / Live':'Vidéo — captation'};
 const show=w=>{form.hidden=w!=='form';$('.devis-ok').hidden=w!=='ok';$('.devis-ko').hidden=w!=='ko'};
 const open=t=>{show('form');const v=MAP[t]||t;if(v&&[...sel.options].some(o=>o.text===v))sel.value=v;
