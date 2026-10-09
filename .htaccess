@@ -1,9 +1,6 @@
 # Hébergement o2switch (Apache). Fichier généré par tools/build_pages.py.
 
-# Préproduction : site non indexé. À SUPPRIMER au lancement (avec la ligne Sitemap à remettre dans robots.txt).
-<IfModule mod_headers.c>
-  Header set X-Robots-Tag "noindex"
-</IfModule>
+# Site en ligne et indexable. Restent en noindex (en-têtes envoyés par PHP) : galerie.php, photo.php, devis.php.
 
 # Toujours https://natishoot.fr (sans www)
 RewriteEngine On

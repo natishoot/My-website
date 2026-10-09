@@ -1,6 +1,4 @@
-# Site en construction : le noindex est envoyé par l'en-tête X-Robots-Tag (netlify.toml).
-# Ne pas mettre Disallow : Google ne verrait plus le noindex.
-# Au lancement : retirer le noindex de netlify.toml et rajouter ici
-# Sitemap: https://natishoot.fr/sitemap.xml
 User-agent: *
 Allow: /
+
+Sitemap: https://natishoot.fr/sitemap.xml

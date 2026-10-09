@@ -17,6 +17,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORTFOLIO = "https://natishoot.myportfolio.com/"
 # Version des fichiers communs (évite qu'un navigateur garde une ancienne mise en forme en cache)
 import hashlib
+STATS_V = hashlib.md5(open(os.path.join(ROOT, "assets", "stats.js"), "rb").read()).hexdigest()[:8]
 ASSET_V = hashlib.md5(b"".join(open(os.path.join(ROOT, "assets", f), "rb").read() for f in ("pages.css", "pages.js"))).hexdigest()[:8]
 
 # Séries affichées sur l'accueil (même ordre et mêmes clés que SERIES dans index.html)
@@ -231,6 +232,7 @@ def page(title, desc, canonical, body):
   <div class="foot"><span class="mono" id="lbt"></span><div class="arrows"><button id="lbp" aria-label="Précédente">←</button><button id="lbn" aria-label="Suivante">→</button></div></div>
 </div>
 <script src="../assets/pages.js?v={ASSET_V}" defer></script>
+<script src="../assets/stats.js?v={STATS_V}" defer></script>
 </body>
 </html>
 """
@@ -356,10 +358,7 @@ def build_prestations():
 
 HTACCESS = """# Hébergement o2switch (Apache). Fichier généré par tools/build_pages.py.
 
-# Préproduction : site non indexé. À SUPPRIMER au lancement (avec la ligne Sitemap à remettre dans robots.txt).
-<IfModule mod_headers.c>
-  Header set X-Robots-Tag "noindex"
-</IfModule>
+# Site en ligne et indexable. Restent en noindex (en-têtes envoyés par PHP) : galerie.php, photo.php, devis.php.
 
 # Toujours https://natishoot.fr (sans www)
 RewriteEngine On
@@ -446,7 +445,20 @@ def stamp_static():
         path = os.path.join(ROOT, name)
         t = open(path).read()
         t = re.sub(r'assets/pages\.(css|js)(\?v=\w+)?"', lambda m: f'assets/pages.{m.group(1)}?v={ASSET_V}"', t)
-        open(path, "w").write(t)
+        open(path, "w").write(stamp_stats(t, "assets/"))
+    path = os.path.join(ROOT, "index.html")
+    t = open(path).read()  # lire avant d'ouvrir en écriture (sinon le fichier est vidé)
+    open(path, "w").write(stamp_stats(t, "assets/"))
+
+
+def stamp_stats(t, prefix):
+    """Ajoute (ou met à jour) le script de mesure d'audience juste avant </body>."""
+    tag = f'<script src="{prefix}stats.js?v={STATS_V}" defer></script>'
+    if "stats.js" in t:
+        return re.sub(r'<script src="[^"]*stats\.js[^"]*" defer></script>', tag, t)
+    if "</body>" in t:
+        return t.replace("</body>", tag + "\n</body>", 1)
+    return t.rstrip("\n") + "\n" + tag + "\n"
 
 
 if __name__ == "__main__":

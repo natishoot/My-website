@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Adresse actuelle : natishoot-site.netlify.app. À remplacer si un domaine est branché. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://natishoot.fr/</loc><lastmod>2026-10-02</lastmod></url>
+  <url><loc>https://natishoot.fr/</loc><lastmod>2026-10-10</lastmod></url>
   <url><loc>https://natishoot.fr/series/concerts.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot.fr/series/createurs.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot.fr/series/defile.html</loc><lastmod>2026-09-29</lastmod></url>
@@ -11,12 +10,12 @@
   <url><loc>https://natishoot.fr/series/portrait.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot.fr/series/reportage.html</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://natishoot.fr/series/sport.html</loc><lastmod>2026-09-29</lastmod></url>
-  <url><loc>https://natishoot.fr/prestations/portrait.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://natishoot.fr/prestations/evenements-mariages.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://natishoot.fr/prestations/mode.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://natishoot.fr/prestations/corporate-photo-video.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://natishoot.fr/prestations/artistes.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://natishoot.fr/prestations/options.html</loc><lastmod>2026-10-08</lastmod></url>
-  <url><loc>https://natishoot.fr/mentions-legales.html</loc><lastmod>2026-09-30</lastmod></url>
-  <url><loc>https://natishoot.fr/cgv.html</loc><lastmod>2026-10-06</lastmod></url>
+  <url><loc>https://natishoot.fr/prestations/portrait.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://natishoot.fr/prestations/evenements-mariages.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://natishoot.fr/prestations/mode.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://natishoot.fr/prestations/corporate-photo-video.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://natishoot.fr/prestations/artistes.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://natishoot.fr/prestations/options.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://natishoot.fr/mentions-legales.html</loc><lastmod>2026-10-10</lastmod></url>
+  <url><loc>https://natishoot.fr/cgv.html</loc><lastmod>2026-10-10</lastmod></url>
 </urlset>
