@@ -11,14 +11,14 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "..", "NatiShoot_CGV_2026_corrigees.md")
-MAIL = "natishoot.tipix@gmail.com"
 
 
 def inline(t):
     t = html.escape(t, quote=False)
     t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
     t = re.sub(r"\[VARIABLE[^\]]*\]", lambda m: f'<span class="var">{m.group(0)}</span>', t)
-    return t.replace(MAIL, f'<a href="mailto:{MAIL}">{MAIL}</a>')
+    t = re.sub(r"https://([\w.-]+)", r'<a href="https://\1" target="_blank" rel="noopener">\1</a>', t)
+    return re.sub(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", lambda m: f'<a href="mailto:{m.group(0)}">{m.group(0)}</a>', t)
 
 
 def convert(md):
