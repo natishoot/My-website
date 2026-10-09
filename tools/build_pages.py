@@ -424,6 +424,10 @@ def build_home():
     a = s.index("<!-- SOLIDAIRE:START -->") + len("<!-- SOLIDAIRE:START -->")
     b = s.index("<!-- SOLIDAIRE:END -->")
     s = s[:a] + f'\n  <div class="callout home"><p>{SOLIDAIRE}</p><a href="#devis" class="btn mag" data-devis>Demander un devis <span class="arr">→</span></a></div>\n  ' + s[b:]
+    # carte Boudoir & nu : nombre réel de photos de la galerie privée (dossier hors du site)
+    prive = glob.glob(os.path.join(os.path.dirname(ROOT), "natishoot-galerie-privee", "boudoir-[0-9][0-9].jpg"))
+    if prive:
+        s = re.sub(r'(<span class="cnt mono">)\d+ photos(</span><span class="ghost")', rf"\g<1>{len(prive)} photos\2", s)
     open(path, "w").write(s)
     # redirections des anciennes pages prestations
     t = os.path.join(ROOT, "netlify.toml")
