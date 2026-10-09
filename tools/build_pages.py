@@ -41,7 +41,7 @@ SOLIDAIRE = ("Vous êtes une association ou un artiste indépendant ? Vous pouve
              "Demandez un devis personnalisé.")
 ARTISTE = "Vous êtes un artiste indépendant ou un artiste signé en label ? Demandez un devis personnalisé."
 
-# Tarifs : NatiShoot_Brief_Reference_2026-10-08.md (prix nets). Formule : (nom, contenu, prix, unité, repère)
+# Tarifs : NatiShoot_Brief_Reference_2026-10-08.md, v4 (prix nets). Formule : (nom, contenu, prix, unité, repère)
 # prix None = prestation « artistes » : aucun prix sur le site (« Sur devis »). Formules Élan : jamais affichées.
 PRESTATIONS = [
     {"k": "portrait", "n": "01", "t": "Portrait", "em": "& grossesse", "sub": "Portrait, grossesse, boudoir",
@@ -74,9 +74,9 @@ PRESTATIONS = [
          ]),
          ("Mariage", [
              ("Mariage civil", "Cérémonie, couple et groupes — galerie privée", "550 €", "", ""),
-             ("Mariage Essentiel", "8 h — 300 photos retouchées — album 21 × 28 cm", "1 690 €", "", ""),
-             ("Mariage Complet", "10 h — 500 photos — reel 30 s — album 21 × 28 cm", "2 200 €", "", "reco"),
-             ("Mariage photo et film", "Forfait complet, film de 5 à 6 min", "Dès 3 200 €", "", ""),
+             ("Mariage Essentiel", "8 h — 300 photos retouchées — album 21 × 28 cm", "1 590 €", "", ""),
+             ("Mariage Complet", "10 h — 500 photos — reel 30 s — album 21 × 28 cm", "2 090 €", "", "reco"),
+             ("Mariage photo et film", "Forfait complet, film de 5 à 6 min", "Dès 2 990 €", "", ""),
          ]),
      ],
      "photos": [("sport", 8), ("cosplay", 8)], "series": ["sport", "cosplay", "reportage"]},
@@ -94,24 +94,24 @@ PRESTATIONS = [
      ],
      "photos": [("defile", 8), ("createurs-collabs", 6)], "series": ["defile", "createurs"]},
     {"k": "corporate-photo-video", "n": "04", "t": "Corporate", "em": "& photo + vidéo", "sub": "Entreprises, organisations — tarif pro",
-     "type": "Corporate / photo + vidéo", "from": "Dès 780 €", "cover": "divers-05", "home_img": ("src", "images/divers-05.jpg"),
+     "type": "Corporate / photo + vidéo", "from": "Dès 650 €", "cover": "divers-05", "home_img": ("src", "images/divers-05.jpg"),
      "items": ["Équipe, gestes métier, lieu et ambiance", "Banque d’images cohérente", "Portraits et interviews préparées",
                "Films courts et formats verticaux", "Contenu régulier mensuel"],
      "note": ("Tarif pro : cadrage éditorial, interviews préparées et droits d’exploitation pour la communication de l’organisation. "
               "Les droits d’utilisation sont définis au devis (supports, durée, diffusion). Usage publicitaire et grands volumes : sur devis."),
      "groups": [
          ("Corporate", [
-             ("Corporate demi-journée", "Jusqu’à 4 h — équipe, gestes métier, lieu et ambiance", "780 €", "", "reco"),
-             ("Corporate journée", "Jusqu’à 8 h — banque d’images cohérente", "1 440 €", "", ""),
-             ("Campagne de lancement", "Conception légère, production, images de campagne", "Dès 1 500 €", "", ""),
+             ("Corporate demi-journée", "Jusqu’à 4 h — équipe, gestes métier, lieu et ambiance", "650 €", "", "reco"),
+             ("Corporate journée", "Jusqu’à 8 h — banque d’images cohérente", "1 200 €", "", ""),
+             ("Campagne de lancement", "Conception légère, production, images de campagne", "Dès 1 290 €", "", ""),
          ]),
          ("Photo + vidéo", [
-             ("Visages Essentiel", "1 lieu — 2 h — 10 photos — 1 interview ≤ 60 s — 1 correction", "990 €", "", ""),
-             ("Visages Histoire", "1 lieu — 4 h — 20 photos — film ≤ 2 min — 2 interviews — 1 verticale — 2 corrections", "2 190 €", "", "reco"),
-             ("Visages Signature", "Cadrage éditorial renforcé — 4 h — 25 photos — film 2 à 3 min — 2 interviews — 2 verticales — 2 corrections", "2 690 €", "", ""),
-             ("Événement Récit", "4 h — 40 photos — film récap ≤ 60 s — 1 interview", "1 440 €", "", ""),
-             ("Mini-documentaire", "1 jour — 3 intervenants — film 3 à 5 min — 2 corrections", "Dès 3 600 €", "", ""),
-             ("Contenu Régulier", "1 séance/mois ≤ 2 h — 10 photos + 2 vidéos ≤ 30 s — engagement 3 mois", "600 €", "mois", ""),
+             ("Visages Essentiel", "1 lieu — 2 h — 10 photos — 1 interview ≤ 60 s — 1 correction", "820 €", "", ""),
+             ("Visages Histoire", "1 lieu — 4 h — 20 photos — film ≤ 2 min — 2 interviews — 1 verticale — 2 corrections", "1 850 €", "", "reco"),
+             ("Visages Signature", "Cadrage éditorial renforcé — 4 h — 25 photos — film 2 à 3 min — 2 interviews — 2 verticales — 2 corrections", "2 150 €", "", ""),
+             ("Événement Récit", "4 h — 40 photos — film récap ≤ 60 s — 1 interview", "1 190 €", "", ""),
+             ("Mini-documentaire", "1 jour — 3 intervenants — film 3 à 5 min — 2 corrections", "Dès 2 690 €", "", ""),
+             ("Contenu Régulier", "1 séance/mois ≤ 2 h — 10 photos + 2 vidéos ≤ 30 s — engagement 3 mois", "560 €", "mois", ""),
          ]),
      ],
      "link": ("Voir les vidéos NatiShoot", PORTFOLIO + "videos-natishoot"),
@@ -148,7 +148,7 @@ PRESTATIONS = [
              ("Heure supplémentaire événement", "", "120 €", "heure", ""),
              ("Reel ajouté à une prestation", "Format court pour les réseaux", "120 €", "", ""),
              ("Album photo", "Format au choix", "Dès 90 €", "", ""),
-             ("Interview courte", "1 personne — vidéo ≤ 90 s sous-titrée — 1 correction", "480 €", "", ""),
+             ("Interview courte", "1 personne — vidéo ≤ 90 s sous-titrée — 1 correction", "390 €", "", ""),
              ("3 déclinaisons verticales", "À partir du montage validé — ≤ 30 s chacune", "110 €", "", ""),
              ("Retouche avancée", "Par photo — détourage ou retouche localisée", "Dès 24 €", "photo", ""),
          ]),
