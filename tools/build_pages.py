@@ -200,10 +200,10 @@ def page(title, desc, canonical, body):
 <meta name="description" content="{html.escape(desc)}">
 <meta name="theme-color" content="#0b0a09">
 <meta name="color-scheme" content="dark">
-<link rel="canonical" href="https://natishoot-site.netlify.app/{canonical}">
+<link rel="canonical" href="https://natishoot.fr/{canonical}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
-<meta property="og:image" content="https://natishoot-site.netlify.app/images/portrait-01.jpg">
+<meta property="og:image" content="https://natishoot.fr/images/portrait-01.jpg">
 <link rel="preload" href="../fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
@@ -222,7 +222,7 @@ def page(title, desc, canonical, body):
 <footer>
   <div class="bot">
     <span>© 2026 NatiShoot Photography — Patrick Rhino EI · SIRET 531 577 955 00036 · TVA non applicable, art. 293 B du CGI</span>
-    <span><a href="https://instagram.com/tfl.971" target="_blank" rel="noopener">Instagram</a> · <a href="https://photo-portal.shop/profiles/natishoot/" target="_blank" rel="noopener">Boutique tirages</a> · <a href="../mentions-legales.html">Mentions légales</a> · <a href="../cgv.html">CGV</a></span>
+    <span><a href="https://instagram.com/tfl.971" target="_blank" rel="noopener">Instagram</a> · <a href="../mentions-legales.html">Mentions légales</a> · <a href="../cgv.html">CGV</a></span>
   </div>
 </footer>
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Visionneuse">
@@ -354,6 +354,42 @@ def build_prestations():
         open(os.path.join(ROOT, "prestations", f"{p['k']}.html"), "w").write(out)
 
 
+HTACCESS = """# Hébergement o2switch (Apache). Fichier généré par tools/build_pages.py.
+
+# Préproduction : site non indexé. À SUPPRIMER au lancement (avec la ligne Sitemap à remettre dans robots.txt).
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex"
+</IfModule>
+
+# Toujours https://natishoot.fr (sans www)
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\\. [NC]
+RewriteRule ^ https://natishoot.fr%{REQUEST_URI} [L,R=301]
+
+# Anciennes pages prestations
+{REDIRECTS}
+# Fichiers de travail jamais servis
+RedirectMatch 404 ^/(tools|\\.git)(/|$)
+<FilesMatch "\\.(md|py|toml|txt)$">
+  Require all denied
+</FilesMatch>
+<Files "robots.txt">
+  Require all granted
+</Files>
+
+# Sécurité et cache
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  <FilesMatch "\\.(jpg|jpeg|png|webp|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+ErrorDocument 404 /index.html
+"""
+
+
 def build_home():
     """Réécrit les cartes Prestations de l'accueil entre les repères PRESTATIONS:START / END."""
     total = f"{len(PRESTATIONS):02d}"
@@ -392,6 +428,9 @@ def build_home():
     toml += "\n# Anciennes pages prestations (réorganisations des tarifs 2026)\n" + "".join(
         f'[[redirects]]\n  from = "/prestations/{o}.html"\n  to = "/prestations/{n}.html"\n  status = 301\n\n' for o, n in OLD_PRESTA.items())
     open(t, "w").write(toml.rstrip() + "\n")
+    # .htaccess (hébergement o2switch / Apache)
+    redir = "".join(f"Redirect 301 /prestations/{o}.html /prestations/{n}.html\n" for o, n in OLD_PRESTA.items())
+    open(os.path.join(ROOT, ".htaccess"), "w").write(HTACCESS.replace("{REDIRECTS}", redir))
 
 
 def stamp_static():

@@ -7,9 +7,9 @@
 <meta name="description" content="NatiShoot Photography — Natan, photographe à Paris. Portrait, mode, concerts, cosplay, sport, grossesse, reportage. Shooting photo et vidéo sur devis.">
 <meta property="og:title" content="NatiShoot — Photographe à Paris">
 <meta property="og:description" content="Portrait, concerts, cosplay, sport, grossesse. Shooting photo & vidéo sur devis.">
-<meta property="og:image" content="https://natishoot-site.netlify.app/images/portrait-01.jpg">
-<link rel="canonical" href="https://natishoot-site.netlify.app/">
-<meta property="og:url" content="https://natishoot-site.netlify.app/">
+<meta property="og:image" content="https://natishoot.fr/images/portrait-01.jpg">
+<link rel="canonical" href="https://natishoot.fr/">
+<meta property="og:url" content="https://natishoot.fr/">
 <meta name="theme-color" content="#0b0a09">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
@@ -23,12 +23,12 @@
   "@type": "ProfessionalService",
   "name": "NatiShoot Photography",
   "description": "Photographe portrait, concert, événementiel et vidéaste à Paris.",
-  "url": "https://natishoot-site.netlify.app/",
-  "image": "https://natishoot-site.netlify.app/images/portrait-01.jpg",
+  "url": "https://natishoot.fr/",
+  "image": "https://natishoot.fr/images/portrait-01.jpg",
   "founder": {"@type": "Person", "name": "Patrick Rhino", "alternateName": "Natan", "jobTitle": "Photographe et vidéaste"},
   "areaServed": "Paris, Île-de-France",
   "address": {"@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR"},
-  "sameAs": ["https://instagram.com/tfl.971", "https://natishoot.myportfolio.com", "https://photo-portal.shop/profiles/natishoot/"]
+  "sameAs": ["https://instagram.com/tfl.971", "https://natishoot.myportfolio.com"]
 }
 </script>
 <link rel="preconnect" href="https://cdn.myportfolio.com">
@@ -665,7 +665,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
 </dialog>
 <dialog class="devis" id="devis" aria-labelledby="devis-t" data-lenis-prevent>
   <button class="devis-x" type="button" aria-label="Fermer">✕</button>
-  <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="devis-form">
+  <form name="devis" method="POST" action="devis.php" id="devis-form">
     <input type="hidden" name="form-name" value="devis">
     <p class="sr"><label>Ne pas remplir <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
     <div class="eyebrow" id="devis-e">Demande de devis</div>
@@ -704,7 +704,7 @@ h1,h2,h3,.h2,.big,blockquote,.marquee .item,.word{letter-spacing:.012em!importan
   <div class="word" id="fword" aria-hidden="true">NATISHOOT</div>
   <div class="bot">
     <span>© 2026 NatiShoot Photography — Patrick Rhino EI · SIRET 531 577 955 00036 · TVA non applicable, art. 293 B du CGI</span>
-    <span><a href="https://instagram.com/tfl.971" target="_blank" rel="noopener">Instagram</a> · <a href="https://photo-portal.shop/profiles/natishoot/" target="_blank" rel="noopener">Boutique tirages</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a> · <a href="#top">Haut de page ↑</a></span>
+    <span><a href="https://instagram.com/tfl.971" target="_blank" rel="noopener">Instagram</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="cgv.html">CGV</a> · <a href="#top">Haut de page ↑</a></span>
   </div>
 </footer>
 
@@ -880,7 +880,7 @@ let tx=0;lb.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:tr
 d.addEventListener('click',e=>{if(e.target===d||e.target.closest('.devis-x'))d.close();if(e.target.closest('[data-devis]'))d.close()});
 d.addEventListener('close',()=>{if(!$('#devis').open)window.lenis&&lenis.start()});}
 
-// fenêtre de demande de devis (formulaire Netlify, envoi sans quitter la page)
+// fenêtre de demande de devis (envoi par devis.php sur o2switch, sans quitter la page)
 {const dlg=$('#devis'),form=$('#devis-form'),sel=$('#d-type'),MAIL='natishoot.tipix@gmail.com';
 const MAP={'Portrait / corporate':'Portrait individuel','Corporate / photo + vidéo':'Corporate (entreprise)','Événement / mariage':'Événement','Mode / concert':'Mode / défilé','Vidéo / captation':'Vidéo — captation','Photo + vidéo':'Photo + vidéo','Option':'Autre / je ne sais pas encore','Boudoir':'Boudoir / nu artistique','Portrait':'Portrait individuel','Grossesse':'Grossesse','Événement':'Événement','Mode':'Mode / défilé','Vidéo / Live':'Vidéo — captation'};
 const show=w=>{form.hidden=w!=='form';$('.devis-ok').hidden=w!=='ok';$('.devis-ko').hidden=w!=='ko'};
@@ -898,8 +898,8 @@ dlg.addEventListener('close',()=>{window.lenis&&lenis.start()});
 dlg.addEventListener('click',e=>{if(e.target===dlg||e.target.closest('.devis-x,[data-close]'))close()});
 document.addEventListener('click',e=>{const a=e.target.closest('[data-devis],[data-type]');if(!a||dlg.contains(a))return;e.preventDefault();open(a.dataset.type)});
 form.addEventListener('submit',async e=>{e.preventDefault();form.classList.add('sending');const fd=new FormData(form);
-  try{const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()});
-    if(!r.ok)throw 0;form.reset();show('ok')}
+  try{const r=await fetch('devis.php',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()});
+    const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw 0;form.reset();show('ok')}
   catch(_){const g=k=>fd.get(k)||'';const body='Type de séance : '+g('type')+'\nDate souhaitée : '+g('date')+'\nLieu : '+g('lieu')+'\n\n'+g('message')+'\n\nNom : '+g('nom')+'\nE-mail : '+g('email')+'\nTéléphone : '+g('telephone');
     $('#devis-mail').href='mailto:'+MAIL+'?subject='+encodeURIComponent('Demande de devis — '+(g('type')||'shooting'))+'&body='+encodeURIComponent(body);show('ko')}
   finally{form.classList.remove('sending')}});
