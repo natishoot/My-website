@@ -13,7 +13,7 @@ PRIVE="$(cd .. && pwd)"
 rsync -rlptz --delete $1 -e "$SSH" \
   --filter 'P cgi-bin/' --filter 'P .well-known/' \
   --exclude '.git/' --exclude '.gitignore' --exclude '.DS_Store' --exclude 'tools/' \
-  --exclude 'README.md' --exclude 'netlify.toml' \
+  --exclude 'README.md' --exclude 'netlify.toml' --exclude 'docs/' \
   ./ "$HOST:public_html/"
 
 rsync -rlptz --delete $1 -e "$SSH" --exclude '.DS_Store' \
