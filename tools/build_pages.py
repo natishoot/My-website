@@ -9,6 +9,7 @@ Pour ajouter une photo : déposer les deux fichiers puis relancer le script.
 """
 import glob
 import html
+import json
 import os
 import re
 import struct
@@ -191,7 +192,7 @@ def tile(name, w, h, alt):
             f'<img src="../images/{name}-900.jpg" width="{w}" height="{h}" alt="{html.escape(alt)}" loading="lazy" decoding="async"></a>')
 
 
-def page(title, desc, canonical, body):
+def page(title, desc, canonical, body, head_extra=""):
     return f"""<!doctype html>
 <html lang="fr">
 <head>
@@ -210,7 +211,7 @@ def page(title, desc, canonical, body):
 <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon-192.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="stylesheet" href="../assets/pages.css?v={ASSET_V}">
-</head>
+{head_extra}</head>
 <body>
 <header class="nav">
   <a class="logo" href="../index.html">NATISHOOT <small>photography</small></a>
@@ -307,6 +308,51 @@ def tarifs_html(p, cta):
     return "\n    ".join(out)
 
 
+SITE = "https://natishoot.fr"
+
+
+def prestation_desc(p):
+    resume = p["items"][:3] or [f[0] for f in formulas(p)[:3]]
+    txt = ", ".join(resume).replace(" : ", " — ")
+    return txt[0].upper() + txt[1:] + "."
+
+
+def prestation_service(p, full=True):
+    """Service schema.org d'une rubrique. Prix « à partir de » seulement s'il est affiché ; jamais pour « artistes »."""
+    s = {"@type": "Service", "name": f"{p['t']} {p['em']}", "description": prestation_desc(p),
+         "url": f"{SITE}/prestations/{p['k']}.html", "serviceType": p["sub"]}
+    if full:
+        s["@context"] = "https://schema.org"
+        s["provider"] = {"@type": "ProfessionalService", "name": "NatiShoot Photography", "url": SITE + "/"}
+        s["areaServed"] = "Paris, Île-de-France"
+    m = re.search(r"\d[\d\s\u00a0]*", p["from"]) if not p.get("artiste") else None
+    if m:
+        s["offers"] = {"@type": "Offer", "priceCurrency": "EUR", "url": f"{SITE}/prestations/{p['k']}.html",
+                       "priceSpecification": {"@type": "PriceSpecification", "priceCurrency": "EUR",
+                                              "minPrice": int(re.sub(r"\D", "", m.group()))}}
+    return s
+
+
+def ld_script(data):
+    return '<script type="application/ld+json">\n' + json.dumps(data, ensure_ascii=False, indent=2) + "\n</script>\n"
+
+
+def home_jsonld():
+    return {
+        "@context": "https://schema.org", "@type": "ProfessionalService",
+        "name": "NatiShoot Photography",
+        "description": "Photographe portrait, concert, événementiel et vidéaste à Paris.",
+        "url": SITE + "/", "image": SITE + "/images/portrait-01.jpg",
+        "email": "contact@natishoot.fr",
+        "founder": {"@type": "Person", "name": "Patrick Rhino", "alternateName": "Natan", "jobTitle": "Photographe et vidéaste"},
+        "areaServed": "Paris, Île-de-France",
+        "address": {"@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR"},
+        "sameAs": ["https://instagram.com/tfl.971", "https://natishoot.myportfolio.com"],
+        "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Prestations photo et vidéo",
+                            "itemListElement": [prestation_service(p, full=False) for p in PRESTATIONS]},
+    }
+
+
 def build_prestations():
     os.makedirs(os.path.join(ROOT, "prestations"), exist_ok=True)
     keep = {f"{p['k']}.html" for p in PRESTATIONS}
@@ -352,7 +398,7 @@ def build_prestations():
         resume = p["items"][:3] or [f[0] for f in formulas(p)[:3]]
         out = page(f"{p['t']} {p['em']} — Prestation photo NatiShoot, Paris",
                    f"{p['t']} {p['em']} par NatiShoot, photographe à Paris : {', '.join(resume).lower()}. {p['from']}.",
-                   f"prestations/{p['k']}.html", body)
+                   f"prestations/{p['k']}.html", body, ld_script(prestation_service(p)))
         open(os.path.join(ROOT, "prestations", f"{p['k']}.html"), "w").write(out)
 
 
@@ -424,6 +470,7 @@ def build_home():
     a = s.index("<!-- SOLIDAIRE:START -->") + len("<!-- SOLIDAIRE:START -->")
     b = s.index("<!-- SOLIDAIRE:END -->")
     s = s[:a] + f'\n  <div class="callout home"><p>{SOLIDAIRE}</p><a href="#devis" class="btn mag" data-devis>Demander un devis <span class="arr">→</span></a></div>\n  ' + s[b:]
+    s = re.sub(r'<script type="application/ld\+json">.*?</script>', lambda m: ld_script(home_jsonld()).rstrip("\n"), s, count=1, flags=re.S)
     # carte Boudoir & nu : nombre réel de photos de la galerie privée (dossier hors du site)
     prive = glob.glob(os.path.join(os.path.dirname(ROOT), "natishoot-galerie-privee", "boudoir-[0-9][0-9].jpg"))
     if prive:
