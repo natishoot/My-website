@@ -347,7 +347,7 @@ def home_jsonld():
         "founder": {"@type": "Person", "name": "Patrick Rhino", "alternateName": "Natan", "jobTitle": "Photographe et vidéaste"},
         "areaServed": "Paris, Île-de-France",
         "address": {"@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR"},
-        "sameAs": ["https://instagram.com/tfl.971", "https://natishoot.myportfolio.com"],
+        "sameAs": ["https://instagram.com/tfl.971", "https://natishoot.myportfolio.com", "https://www.google.com/maps?cid=16828960184044848929"],
         "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Prestations photo et vidéo",
                             "itemListElement": [prestation_service(p, full=False) for p in PRESTATIONS]},
     }
