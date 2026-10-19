@@ -420,7 +420,7 @@ RedirectMatch 404 ^/(tools|\\.git)(/|$)
 <FilesMatch "\\.(md|py|toml|txt)$">
   Require all denied
 </FilesMatch>
-<FilesMatch "^(robots|llms)\\.txt$">
+<FilesMatch "^(robots|llms|[0-9a-f]{32})\\.txt$">
   Require all granted
 </FilesMatch>
 <Files "galerie-lib.php">
