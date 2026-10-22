@@ -98,9 +98,11 @@ PRESTATIONS = [
     {"k": "corporate-photo-video", "n": "04", "t": "Corporate", "em": "& photo + vidéo", "sub": "Entreprises, organisations — tarif pro",
      "type": "Corporate / photo + vidéo", "from": "Dès 650 €", "cover": "carte-corporate", "home_img": ("src", "images/carte-corporate.jpg"),
      "items": ["Équipe, gestes métier, lieu et ambiance", "Banque d’images cohérente", "Portraits et interviews préparées",
-               "Films courts et formats verticaux", "Contenu régulier mensuel"],
+               "Films courts et formats verticaux", "Contenu régulier mensuel", "Création et refonte de site web, avec photos et réseaux sociaux"],
      "note": ("Tarif pro : cadrage éditorial, interviews préparées et droits d’exploitation pour la communication de l’organisation. "
-              "Les droits d’utilisation sont définis au devis (supports, durée, diffusion). Usage publicitaire et grands volumes : sur devis."),
+              "Les droits d’utilisation sont définis au devis (supports, durée, diffusion). Usage publicitaire et grands volumes : sur devis. "
+              "Web : prix de lancement valables pour toute commande signée avant début mars 2027 ; ensuite page unique 920 €, site vitrine et refonte 1 390 €, formules site + images à partir de 1 230 €. "
+              "Aucun classement Google n’est garanti. La gestion des messages et commentaires de vos réseaux reste à votre charge."),
      "groups": [
          ("Corporate", [
              ("Corporate demi-journée", "Jusqu’à 4 h — équipe, gestes métier, lieu et ambiance", "650 €", "", "reco"),
@@ -114,6 +116,30 @@ PRESTATIONS = [
              ("Événement Récit", "4 h — 40 photos — film récap ≤ 60 s — 1 interview", "1 190 €", "", ""),
              ("Mini-documentaire", "1 jour — 3 intervenants — film 3 à 5 min — 2 corrections", "Dès 2 690 €", "", ""),
              ("Contenu Régulier", "1 séance/mois ≤ 2 h — 10 photos + 2 vidéos ≤ 30 s — engagement 3 mois", "560 €", "mois", ""),
+         ]),
+         ("Web — création et refonte de site", [
+             ("Page unique", "1 page, jusqu’à 6 sections — formulaire — liens réseaux", "690 €", "", ""),
+             ("Site vitrine", "Jusqu’à 5 pages — navigation — formulaire — référencement de base", "1 090 €", "", "reco"),
+             ("Refonte de site vitrine", "Jusqu’à 5 pages — analyse de l’existant — nouvelle mise en page", "1 090 €", "", ""),
+             ("Page supplémentaire", "Même style graphique", "140 €", "", ""),
+             ("Aide à la rédaction", "Jusqu’à 5 pages courtes", "270 €", "", ""),
+             ("Lien vers un outil de réservation", "Paramétrage simple", "140 €", "", ""),
+             ("Suivi Essentiel", "Vérification mensuelle — 30 min de modifications — réponse sous 3 jours ouvrés", "60 €", "mois", ""),
+             ("Suivi Plus", "Vérification mensuelle — 1 h de modifications — réponse sous 2 jours ouvrés", "96 €", "mois", ""),
+         ]),
+         ("Web — site + images", [
+             ("Indépendant Visible", "Page unique + séance photo 2 h : 25 photos développées", "1 030 €", "", ""),
+             ("Entreprise Visible", "Site vitrine + séance photo 2 h : 25 photos développées", "1 390 €", "", "reco"),
+             ("Signature Photo / Vidéo / Web", "Site vitrine + séance photo 2 h : 25 photos + 2 vidéos verticales", "1 790 €", "", ""),
+             ("Lieu de bien-être", "Site vitrine + images du lieu et de l’équipe + lien de réservation", "1 510 €", "", ""),
+             ("Événement en ligne", "Page dédiée + reportage photo 2 h et galerie", "890 €", "", ""),
+         ]),
+         ("Web — réseaux sociaux", [
+             ("Réseaux Essentiel", "Instagram + Facebook — 8 publications — 4 stories — programmation — bilan", "300 €", "mois", ""),
+             ("Réseaux Plus", "3 publications + 2 stories par semaine — programmation — bilan", "450 €", "mois", "reco"),
+             ("Reel monté", "1 reel ≤ 30 s monté à partir de vos vidéos — sous-titres — musique libre de droits", "100 €", "reel", ""),
+             ("Présence Sociale", "Suivi Essentiel + Réseaux Essentiel", "320 €", "mois", ""),
+             ("Présence Complète", "Séance mensuelle 2 h + Réseaux Essentiel + Suivi Essentiel", "830 €", "mois", "reco"),
          ]),
      ],
      "link": ("Voir les vidéos NatiShoot", PORTFOLIO + "videos-natishoot"),
@@ -267,7 +293,7 @@ def build_series():
         open(os.path.join(ROOT, "series", f"{s['k']}.html"), "w").write(out)
 
 
-UNITS = {"": "", "heure": " / heure", "mois": " / mois", "photo": " / photo"}
+UNITS = {"": "", "heure": " / heure", "mois": " / mois", "photo": " / photo", "reel": " / reel"}
 TAGS = {"": "", "reco": '<em class="tag">Recommandé</em>'}
 
 
