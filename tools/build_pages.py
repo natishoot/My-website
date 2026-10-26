@@ -316,11 +316,27 @@ def formulas(p):
     return [f for _, fs in p["groups"] for f in fs]
 
 
+GUIDE_WEB = [
+    ("Page unique", "tout sur une seule page. Simple et abordable, idéale pour démarrer."),
+    ("Site vitrine", "jusqu’à 5 pages, une par activité. Plus complet, il peut grandir."),
+    ("Refonte", "votre site actuel refait, plus beau et plus clair, au même tarif qu’une création."),
+    ("Site + images", "votre site et vos photos par la même personne, avec 10 % de remise."),
+]
+
+
+def guide_html():
+    rows = "".join(f"<li><span><b>{html.escape(a)}</b> — {html.escape(b)}</span></li>" for a, b in GUIDE_WEB)
+    return f'<h3 class="tg">Web — quelle formule choisir ?</h3>\n    <ul>{rows}</ul>'
+
+
+
 def tarifs_html(p, cta):
     out = ['<h2>Formules &amp; tarifs</h2>']
     if p.get("artiste"):
         out.append(callout(ARTISTE, cta))
     for name, fs in p["groups"]:
+        if name.startswith("Web — création"):
+            out.append(guide_html())
         if len(p["groups"]) > 1:
             out.append(f'<h3 class="tg">{html.escape(name)}</h3>')
         rows = "".join(
